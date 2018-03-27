@@ -4,7 +4,7 @@ class Company extends Component {
   render() {
     return (
       <div>
-          公司列表
+          账户列表
       </div>
     );
   }

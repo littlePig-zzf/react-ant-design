@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './index.css';
 import { Layout, Menu, Icon } from 'antd';
+import { getNavData } from '../../common/nav';
+
 const { Header, Content, Sider } = Layout;
 
 
@@ -27,21 +29,19 @@ class MainIndex extends Component {
               collapsed={this.state.collapsed}
             >
               <div className="logo" />
-              <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                <Menu.Item key="1">
-                  <Link to="/MainIndex/companyIndex">
-                    <Icon type="user" />
-                    <span>nav 1</span>
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="2">
-                  <Icon type="video-camera" />
-                  <span>nav 2</span>
-                </Menu.Item>
-                <Menu.Item key="3">
-                  <Icon type="upload" />
-                  <span>nav 3</span>
-                </Menu.Item>
+              <Menu theme="dark" mode="inline" defaultSelectedKeys={['0']}>
+                {
+                  getNavData.map((item, index)=>{
+                    return  (
+                        <Menu.Item key={index}>
+                          <Link to={item.path}>
+                            <Icon type={item.icon} />
+                            <span>{item.name}</span>
+                          </Link>
+                        </Menu.Item>
+                      )
+                  })
+                }
               </Menu>
             </Sider>
             <Layout>
@@ -53,7 +53,6 @@ class MainIndex extends Component {
                 />
               </Header>
               <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
-              asdasd
                 {this.props.children}
               </Content>
             </Layout>
