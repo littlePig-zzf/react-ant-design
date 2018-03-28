@@ -1,28 +1,57 @@
 import React, { Component } from 'react';
 import { Card, Row, Col, Icon } from 'antd';
-import './index.css';
+import './index.scss';
 
 class manage extends Component {
+	state = {
+		cardData: [
+			{
+				icon: 'file-excel',
+				txt: '4352345',
+				className: 'fileIcon'
+			},
+			{
+				icon: 'file-excel',
+				txt: '4352345',
+				className: 'fileIcon'
+			},
+			{
+				icon: 'file-excel',
+				txt: '4352345',
+				className: 'fileIcon'
+			},
+			{
+				icon: 'file-excel',
+				txt: '4352345',
+				className: 'fileIcon'
+			}
+		]
+	}
   render() {
     return (
-      <div className="main-header">
-	    <Row gutter={16}>
-	      <Col className="gutter-row" span={6}>
-	        <Card bordered={false}>
-		        <Icon type="file-excel" />
-	        </Card>
-	      </Col>
-	      <Col className="gutter-row" span={6}>
-	        <div className="gutter-box">col-6</div>
-	      </Col>
-	      <Col className="gutter-row" span={6}>
-	        <div className="gutter-box">col-6</div>
-	      </Col>
-	      <Col className="gutter-row" span={6}>
-	        <div className="gutter-box">col-6</div>
-	      </Col>
-	    </Row>
-	  </div>
+      <div>
+      	<div className="main-header">
+		    <Row gutter={16}>
+			      {
+			      	this.state.cardData.map((item,index)=>{
+			      		return (
+					      	<Col className="gutter-row" span={6} key={index}>
+	      			 			<Card bordered={false} hoverable className={item.className}>
+					        		<Icon type={item.icon} />
+					        		<span className="cardTxt">
+					        			{item.txt}
+					        		</span>
+			        			</Card>
+			        	 	</Col>
+		      			)
+			      	})
+			      }
+		    </Row>
+		</div>
+		<div className="main-cont">
+
+		</div>
+      </div>
     );
   }
 }

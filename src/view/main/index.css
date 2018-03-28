@@ -1,29 +1,41 @@
 .MainBox .ant-layout-sider {
-	height: 100vh;
-}
-.trigger {
+  height: 100vh; }
+
+.MainBox .trigger {
   font-size: 18px;
   line-height: 64px;
   padding: 0 24px;
   cursor: pointer;
-  transition: color .3s;
-}
+  transition: color .3s; }
 
-.trigger:hover {
-  color: #1890ff;
-}
+.MainBox .trigger:hover {
+  color: #1890ff; }
 
-.logo {
+.MainBox .exitBtn {
+  float: right;
+  padding-right: 24px; }
+
+.MainBox .logo {
   height: 32px;
-  background: rgba(255,255,255,.2);
-  margin: 16px;
-}
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px; }
 
-.main-header .ant-row > div {
+.MainBox .main-header .ant-row > div {
   background: transparent;
-  border: 0;
-}
-.main-header .gutter-box {
+  border: 0; }
+
+.MainBox .main-header .gutter-box {
   background: #00A0E9;
-  padding: 5px 0;
-}
+  padding: 5px 0; }
+
+.MainBox .main-header .fileIcon {
+  font-size: 30px;
+  color: #1DA57A; }
+
+.MainBox .main-header .cardTxt {
+  padding-left: 20px; }
+
+.MainBox .main-cont {
+  min-height: 300px;
+  margin-top: 24px;
+  background-color: #fff; }

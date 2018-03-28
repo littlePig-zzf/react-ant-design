@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './index.css';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Dropdown } from 'antd';
 import { getNavData } from '../../common/nav';
 import { browserHistory } from 'react-router';
 
@@ -88,6 +88,15 @@ class MainIndex extends Component {
     return menu
   }
   render() {
+    const menu = (
+      <Menu>
+        <Menu.Item>
+          <Link to="/Login" replace="true">
+            退出
+          </Link>
+        </Menu.Item>
+      </Menu>
+    );
     return (
       <div className="MainBox">
          <Layout>
@@ -107,6 +116,11 @@ class MainIndex extends Component {
                   type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                   onClick={this.toggle}
                 />
+                <Dropdown overlay={menu}>
+                  <a className="ant-dropdown-link exitBtn">
+                    littple pig<Icon type="down" />
+                  </a>
+                </Dropdown>
               </Header>
               <Content style={{ margin: '24px', background: '#f0f2f5', minHeight: 280 }}>
                 {this.props.children || <MainCont />}

@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-import './index.css';
+// import './index.css';
+
 import App from './App';
 import Login from './view/login';
 import { Route, Router, hashHistory, IndexRedirect } from 'react-router';

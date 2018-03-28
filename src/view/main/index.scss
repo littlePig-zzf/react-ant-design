@@ -1,0 +1,49 @@
+.MainBox {
+  .ant-layout-sider {
+  	height: 100vh;
+  }
+  .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color .3s;
+  }
+
+  .trigger:hover {
+    color: #1890ff;
+  }
+  .exitBtn {
+    float: right;
+    padding-right: 24px;
+  }
+  .logo {
+    height: 32px;
+    background: rgba(255,255,255,.2);
+    margin: 16px;
+  }
+  .main-header {
+    .ant-row > div {
+      background: transparent;
+      border: 0;
+    }
+    .gutter-box {
+      background: #00A0E9;
+      padding: 5px 0;
+    }
+    .fileIcon {
+      font-size: 30px;
+      color: #1DA57A;
+    }
+    .cardTxt {
+      padding-left: 20px;
+    }
+  }
+  .main-cont {
+    min-height: 300px;
+    margin-top: 24px;
+    background-color: #fff;
+  }
+}
+
+
