@@ -3,21 +3,89 @@ import { Link } from 'react-router';
 import './index.css';
 import { Layout, Menu, Icon } from 'antd';
 import { getNavData } from '../../common/nav';
+import { browserHistory } from 'react-router';
 
+import MainCont from './mainCont';
 const { Header, Content, Sider } = Layout;
-
+const SubMenu = Menu.SubMenu;
 
 class MainIndex extends Component {
   state = {
     collapsed: false,
+    curSelectKey: [],  //当前选择的菜单
+    curPath: '',  //当前选择的路由
+    curOpenNav: []  //当前需要打开的二级菜单
   };
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
   }
-  componentDidMount() {
-    console.log(this.props.children);
+  componentWillMount() {
+    let path = browserHistory.getCurrentLocation().hash;  //获取当前的路由
+    let curPath = path.substr(1, path.length-1);
+    this.setState({
+      curPath: path.substr(1, path.length-1)
+    })
+    getNavData.forEach((item, index)=>{
+      if(item.children) {
+        item.children.forEach((cItem,cIndex)=>{
+          if(Object.is(cItem.path, curPath)){
+            this.setState({  //使用setState修改state数据之后，并不能在这里直接打印最新的state的值，因为修改了之后还会执行一遍willUpdate
+              curSelectKey: [index + '-' + cIndex],
+              curOpenNav: [index.toString()]
+            })
+          }
+        })
+      }
+      else{
+        if(Object.is(item.path, curPath)){
+          this.setState({  //使用setState修改state数据之后，并不能在这里直接打印最新的state的值，因为修改了之后还会执行一遍willUpdate
+            curSelectKey: [index.toString()]
+          })
+        }
+      }
+    })
+  }
+  getMenu() {
+    console.log(this.state.curSelectKey)
+    let menu = [];
+    getNavData.forEach((item, index)=>{
+        if(item.children) {
+            menu.push(
+              <SubMenu
+                key={index}
+                title={<span><Icon type={item.icon} /><span>{item.name}</span></span>}>
+              {
+                this.getSubMenu(item.children, index)
+              }
+              </SubMenu>
+            )
+        }else{
+            menu.push(
+              <Menu.Item key={index}>
+                <Link to={item.path}>
+                  <Icon type={item.icon} />
+                  <span>{item.name}</span>
+                </Link>
+              </Menu.Item>
+          )
+        }
+    })
+    return menu;
+  }
+  getSubMenu(children, index) {
+    let menu = [];
+    children.forEach((cItem, cIndex)=>{
+      menu.push(
+        <Menu.Item key={index + '-' + cIndex}>
+          <Link to={cItem.path}>
+            {cItem.name}
+          </Link>
+        </Menu.Item>
+      )
+    })
+    return menu
   }
   render() {
     return (
@@ -26,22 +94,10 @@ class MainIndex extends Component {
             <Sider
               trigger={null}
               collapsible
-              collapsed={this.state.collapsed}
-            >
+              collapsed={this.state.collapsed}>
               <div className="logo" />
-              <Menu theme="dark" mode="inline" defaultSelectedKeys={['0']}>
-                {
-                  getNavData.map((item, index)=>{
-                    return  (
-                        <Menu.Item key={index}>
-                          <Link to={item.path}>
-                            <Icon type={item.icon} />
-                            <span>{item.name}</span>
-                          </Link>
-                        </Menu.Item>
-                      )
-                  })
-                }
+              <Menu theme="dark" mode="inline" defaultSelectedKeys={this.state.curSelectKey} defaultOpenKeys={this.state.curOpenNav}>
+                {this.getMenu()}
               </Menu>
             </Sider>
             <Layout>
@@ -52,8 +108,8 @@ class MainIndex extends Component {
                   onClick={this.toggle}
                 />
               </Header>
-              <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
-                {this.props.children}
+              <Content style={{ margin: '24px', background: '#f0f2f5', minHeight: 280 }}>
+                {this.props.children || <MainCont />}
               </Content>
             </Layout>
           </Layout>

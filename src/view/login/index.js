@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './index.css';
-import { hashHistory } from 'react-router'
+import { hashHistory } from 'react-router';
+// import axios from '../../service/axios';
+// import '../../mock/index';
+
 // import { Link } from 'react-router-dom'; 
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
