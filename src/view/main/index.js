@@ -109,7 +109,7 @@ class MainIndex extends Component {
                 {this.getMenu()}
               </Menu>
             </Sider>
-            <Layout>
+            <Layout className="rightCont">
               <Header style={{ background: '#fff', padding: 0 }}>
                 <Icon
                   className="trigger"

@@ -1,5 +1,14 @@
+.container {
+  width: 100%;
+  padding: 20px;
+  background: #fff; }
+
 .MainBox .ant-layout-sider {
   height: 100vh; }
+
+.MainBox .rightCont {
+  overflow-x: auto !important;
+  min-width: 1200px; }
 
 .MainBox .trigger {
   font-size: 18px;

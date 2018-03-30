@@ -29,4 +29,19 @@ export const getNavData = [
     path: '/MainIndex/storeIndex',
     icon: 'upload'
   },
+  {
+    name: '表单列表',
+    path: '/MainIndex/formIndex',
+    icon: 'upload',
+    children: [
+      {
+        name: '使用ant组件',
+        path: '/MainIndex/formIndex/antForm'
+      },
+      {
+        name: '不使用组件',
+        path: '/MainIndex/formIndex'
+      }
+    ]
+  }
 ]

@@ -16,6 +16,7 @@ import UserIndex from './view/manage/user';
 import RoleIndex from './view/manage/role';
 import permitIndex from './view/manage/permit';
 import StoreIndex from './view/store/index';
+import FormIndex from './view/form/index';
 
 import errorPage from './view/errorPage/index'; //找不到路由
 
@@ -35,6 +36,7 @@ let routes = <Route path="/" onEnter={requireFun} component={App} >
 						<Route path="permitIndex" component={permitIndex} />
 					</Route>
 					<Route path="storeIndex" component={StoreIndex} />
+					<Route path="formIndex" component={FormIndex} />
 				</Route>
 				<Route path="*" component={errorPage}/>
 			</Route>
