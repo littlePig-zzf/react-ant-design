@@ -36,11 +36,11 @@ export const getNavData = [
     children: [
       {
         name: '使用ant组件',
-        path: '/MainIndex/formIndex/antForm'
+        path: '/MainIndex/formIndex/Form'
       },
       {
         name: '不使用组件',
-        path: '/MainIndex/formIndex'
+        path: '/MainIndex/formIndex/RowForm'
       }
     ]
   }
