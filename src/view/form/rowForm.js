@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-
+import { Input, Button, message } from 'antd';
+import ReactDOM from 'react-dom';
 
 class RegistrationForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: ''
+      username: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -14,26 +14,35 @@ class RegistrationForm extends Component {
   }
 
   handleChange(event) {
-    console.log(event.target.value)
     this.setState({
       username: event.target.value
     })
   }
 
   handleSubmit(event) {
-    alert('a name was submit' + this.state.username);
-    event.preventDefault();
+    if(this.state.username === '') {
+      message.error('请填写下面输入框')
+      ReactDOM.findDOMNode(this.refs.user).focus();
+      return
+    }
+    message.success('账户名为： ' + this.state.username);
+    // event.preventDefault();
   }
 
   render() {
+    let InputWidth = {
+      width: '200px',
+      border: '1px solid #eee',
+      margin: '0 10px'
+    };
     return (
       <div className="formBox container">
       	<form onSubmit={this.handleSubmit}>
           <label>
             name:
-            <input type="text" value={this.state.username} onChange={this.handleChange} />
+            <Input ref="user" style={InputWidth} placeholder="Basic usage" onBlur={ this.handleChange }/>
           </label>
-          <input type="submit" value="Submit" />
+          <Button type="primary" htmlType="submit">提交</Button>
         </form>
       </div>
     );

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './index.css';
 import { hashHistory } from 'react-router';
 // import axios from '../../service/axios';
-import '../../mock/index';
 import http from '../../service/index';
 import { api } from '../../service/api';
 import '../../mock';

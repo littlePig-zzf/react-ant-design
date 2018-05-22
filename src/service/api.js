@@ -12,6 +12,10 @@ export const api = {
             type: 'post',
             url: '/api/login'
             // url: API_FULL + 'pvwou'
+        },
+        company: {
+            type: 'post',
+            url: '/api/companyList'
         }
     },
     storeDetail: {

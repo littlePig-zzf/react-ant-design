@@ -18,3 +18,19 @@ Mock.mock('/api/login', (option) => {
 	}
     return res
 })
+
+Mock.mock('/api/companyList', (option) => {
+	let res = {
+        code: 200,
+        data: []
+    }
+    for (let i = 0; i < 46; i++) {
+	  (res.data).push({
+	    key: i,
+	    name: `Edward King ${i}`,
+	    age: `${i}`,
+	    address: `London, Park Lane no. ${i}`,
+	  });
+	}
+    return res
+})

@@ -2,7 +2,11 @@
   width: 100%;
   padding: 20px;
   background: #fff;
+  .title {
+    font-size: 18px;
+  }
 }
+
 .MainBox {
   .ant-layout-sider {
   	height: 100vh;
