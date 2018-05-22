@@ -2,19 +2,37 @@ import React, { Component } from 'react';
 import './index.css';
 import { hashHistory } from 'react-router';
 // import axios from '../../service/axios';
-// import '../../mock/index';
-
+import '../../mock/index';
+import http from '../../service/index';
+import { api } from '../../service/api';
+import '../../mock';
 // import { Link } from 'react-router-dom'; 
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 const FormItem = Form.Item;
 
 class Login extends Component {
+
+  state = {
+  	loading: false
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
+    this.setState({loading: true})
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        hashHistory.push('/MainIndex')
+        http(api.common.index, values, (res)=>{
+        	console.log(res)
+        	this.setState({loading: false})
+        	if(res.code !== 200){
+				message.error(res.data)
+        	}else{
+		        hashHistory.push('/MainIndex')
+        	}
+        }, (error)=>{
+        	console.log(error)
+        })
       }
     });
   }
@@ -45,7 +63,7 @@ class Login extends Component {
 		            <Checkbox>Remember me</Checkbox>
 		          )}
 		          <a className="login-form-forgot" href="">Forgot password</a>
-		          <Button type="primary" htmlType="submit" className="login-form-button">
+		          <Button type="primary" loading={this.state.loading} htmlType="submit" className="login-form-button">
 		            Log in
 		          </Button>
 		          Or <a href="">register now!</a>

@@ -1,7 +1,7 @@
 import axios from './axios';
 //import {Storage} from 'commons/js/utils';
 
-let api = {
+let http = {
     /**
      * 验证
      * @param {*} res 
@@ -19,6 +19,7 @@ let api = {
     * @param {any} failure
     */
     get(url, params = {}, success, failure){
+        console.log('[][]][')
         if(params) params._ = Date.parse(new Date());  //设置请求不缓存
         axios.get(url, { params: params })
         .then(res => {
@@ -60,5 +61,5 @@ export default function(){
         success = arguments[2];
         failure = arguments[3];
     }
-	api[which.type](which.url, params, success, failure);
+	http[which.type](which.url, params, success, failure);
 };
