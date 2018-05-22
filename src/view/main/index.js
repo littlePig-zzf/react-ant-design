@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import './index.css';
 import { Layout, Menu, Icon, Dropdown } from 'antd';
 import { getNavData } from '../../common/nav';
-import { browserHistory } from 'react-router';
 
 import MainCont from './mainCont';
+import BreadItem from '../../components/BreadItem'
+
 const { Header, Content, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
@@ -123,6 +124,7 @@ class MainIndex extends Component {
                 </Dropdown>
               </Header>
               <Content style={{ margin: '24px', background: '#f0f2f5', minHeight: 280 }}>
+                <BreadItem></BreadItem>
                 {this.props.children || <MainCont />}
               </Content>
             </Layout>

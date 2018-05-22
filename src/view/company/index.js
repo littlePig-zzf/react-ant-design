@@ -82,6 +82,7 @@ class Company extends Component {
 		  }
 		};
 
+		
 	    return (
 	      <div className="container">
 	          <h2 className="title">公司列表</h2>
