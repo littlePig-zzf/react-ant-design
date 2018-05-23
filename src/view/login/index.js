@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './index.css';
+import './index.scss';
 import { hashHistory } from 'react-router';
 // import { Link } from 'react-router-dom'; 
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
