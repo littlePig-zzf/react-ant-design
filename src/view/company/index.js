@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Table, Popconfirm } from 'antd';
-import http from '../../service/index';
-import { api } from '../../service/api';
-import '../../mock';
 
 class Company extends Component {
 	state = {
@@ -23,7 +20,7 @@ class Company extends Component {
 	};
 	getData = () => {
 		this.setState({loading: true});
-		http(api.common.company, (res)=>{
+		global.$http(global.$api.common.company, (res)=>{
 			// console.log(res)
 			this.setState(
 				{data: res.data, loading: false}
@@ -32,6 +29,7 @@ class Company extends Component {
 
 		})
 	};
+	
 	componentWillMount() {
 		this.getData()
 	}
@@ -65,16 +63,6 @@ class Company extends Component {
 			  )
 		  }
 		}];
-
-		// const data = [];
-		// for (let i = 0; i < 46; i++) {
-		//   data.push({
-		//     key: i,
-		//     name: `Edward King ${i}`,
-		//     age: `${i}`,
-		//     address: `London, Park Lane no. ${i}`,
-		//   });
-		// }
 
 		const rowSelection = {
 		  onChange: (selectedRowKeys, selectedRows) => {
