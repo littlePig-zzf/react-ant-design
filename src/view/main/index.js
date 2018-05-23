@@ -15,8 +15,7 @@ class MainIndex extends Component {
     collapsed: false,
     curSelectKey: [],  //当前选择的菜单
     curPath: '',  //当前选择的路由
-    curOpenNav: [],  //当前需要打开的二级菜单
-    data: []
+    curOpenNav: []  //当前需要打开的二级菜单
   };
   toggle = () => {
     this.setState({
@@ -51,8 +50,8 @@ class MainIndex extends Component {
   }
   
   getMenu() {
-    console.log(this.state.curSelectKey)
-    this.getRouterFun()
+    // console.log(this.state.curSelectKey)
+    // this.refs.bread.getRouterFun()
     let menu = [];
     getNavData.forEach((item, index)=>{
         if(item.children) {
@@ -90,29 +89,6 @@ class MainIndex extends Component {
       )
     })
     return menu
-  }
-  getRouterFun() {
-    let path = browserHistory.getCurrentLocation().hash;  //获取当前的路由
-    let curPath = path.substr(1, path.length-1);
-    console.log(curPath);
-    let res = [];
-    getNavData.forEach((item, index)=>{
-      if(item.children) {
-        item.children.forEach((cItem,cIndex)=>{
-          if(Object.is(cItem.path, curPath)){
-            res.push(item);
-            res.push(cItem);
-          }
-        })
-      }
-      else{
-        if(Object.is(item.path, curPath)){
-          res.push(item);
-        }
-      }
-    })
-    // return res
-    // this.setState({data: 'opop'})
   }
   render() {
     const menu = (

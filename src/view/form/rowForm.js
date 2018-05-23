@@ -26,7 +26,7 @@ class RegistrationForm extends Component {
       return
     }
     message.success('账户名为： ' + this.state.username);
-    // event.preventDefault();
+    event.preventDefault();
   }
 
   render() {

@@ -38,7 +38,7 @@ export default class BreadItem extends Component {
 	}
 	render() {
 		return (
-			<Breadcrumb itemRender={this.itemRender} routes={this.state.data} />	
+			<Breadcrumb style={{ margin: '0 0 10px'}} itemRender={this.itemRender} routes={this.state.data} />	
 		)
 	}
 }
