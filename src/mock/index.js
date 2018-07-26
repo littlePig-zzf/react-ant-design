@@ -19,12 +19,12 @@ Mock.mock('/api/login', (option) => {
     return res
 })
 
-Mock.mock('/api/companyList', (option) => {
+Mock.mock('/api/companyList', () => {
 	let res = {
         code: 200,
         data: []
     }
-    for (let i = 0; i < 46; i++) {
+    for (let i = 0; i < 22; i++) {
 	  (res.data).push({
 	    key: i,
 	    name: `Edward King ${i}`,

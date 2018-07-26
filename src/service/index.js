@@ -2,64 +2,32 @@ import axios from './axios';
 //import {Storage} from 'commons/js/utils';
 
 let http = {
-    /**
-     * 验证
-     * @param {*} res 
-     */
-    validResponed(res){
+
+    validResponed(res) {
         if (res.status !== 200 || res.statusText.toLowerCase() !== 'ok') {
             return Promise.reject(res.data);
         }
     },
-    /**
-    * get公共调用方法
-    * @param {any} url
-    * @param {any} params
-    * @param {any} success
-    * @param {any} failure
-    */
-    get(url, params = {}, success, failure){
-        console.log('[][]][')
-        if(params) params._ = Date.parse(new Date());  //设置请求不缓存
-        axios.get(url, { params: params })
+
+    axioHandle(url, params = {}, success, failure, type) {
+        type = type.toLowerCase()
+        if (type === 'get' && params) params._ = Date.parse(new Date())
+        axios[type](url, type === 'get' ? { params: params } : params)
         .then(res => {
             this.validResponed(res);
             if(success) success(res.data);
         }).catch(error => {
             if(failure) failure(error);
         });
-    },
-    /**
-    * post公共调用方法
-    * @param {any} url
-    * @param {any} params
-    * @param {any} success
-    * @param {any} failure
-    */
-    post(url, params = {}, success, failure){
-
-        axios.post(url, params)
-        .then(res => {
-            this.validResponed(res);
-            if(success) success(res.data);
-        })
-        .catch(error => {
-            if(failure) failure(error);
-        });
     }
+
 }
 
 export default function(){
-    let which, params, success, failure;
+    let parameter = Array.from(arguments)
     if(typeof arguments[1] === "function"){
-        which = arguments[0];
-        success = arguments[1];
-        failure = arguments[2];
-    }else{
-        which = arguments[0];
-        params = arguments[1];
-        success = arguments[2];
-        failure = arguments[3];
+        parameter.splice(1, 0, '')
     }
-	http[which.type](which.url, params, success, failure);
+    let [which, params, success, failure] = parameter
+	http.axioHandle(which.url, params, success, failure, which.type);
 };

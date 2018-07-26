@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
-import './index.css';
 import { Layout, Menu, Icon, Dropdown } from 'antd';
 import { getNavData } from '../../common/nav';
 
 import MainCont from './mainCont';
 import BreadItem from '../../components/BreadItem'
+import './index.css';
 
 const { Header, Content, Sider } = Layout;
 const SubMenu = Menu.SubMenu;

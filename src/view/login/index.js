@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './index.scss';
+import './index.css';
 import { hashHistory } from 'react-router';
 // import { Link } from 'react-router-dom'; 
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
@@ -21,14 +21,18 @@ class Login extends Component {
         	console.log(res)
         	this.setState({loading: false})
         	if(res.code !== 200){
-				message.error(res.data)
+						message.error(res.data)
         	}else{
 		        hashHistory.push('/MainIndex')
         	}
         }, (error)=>{
         	console.log(error)
         })
-      }
+      } else {
+				this.setState({
+					loading: false
+				})
+			}
     });
   }
   render() {

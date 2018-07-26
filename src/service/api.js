@@ -1,6 +1,5 @@
 
 const API_FULL = 'https://api.myjson.com/bins/'; // 测试服
-// const API_FULL = 'http://c.xiulianzone.com'; // 正式服
 // https://api.myjson.com/bins/pvwou
 export const SERVER_URL = API_FULL;
 
@@ -14,7 +13,7 @@ export const api = {
             // url: API_FULL + 'pvwou'
         },
         company: {
-            type: 'post',
+            type: 'get',
             url: '/api/companyList'
         }
     },
