@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Card, Row, Col, Icon } from 'antd';
 import './index.scss';
 
+import TabFrame from "../../components/TabFrame";
+
 class manage extends Component {
 	state = {
 		cardData: [
@@ -25,7 +27,10 @@ class manage extends Component {
 				txt: '4352345',
 				className: 'fileIcon'
 			}
-		]
+		],
+		echartBg: '#d0545f',
+		carData: ['宝马', '奔驰', '法拉第', '奥迪', '大众', '本田', '一汽'],
+		carSellerData: [12, 56, 20, 52, 10, 5, 45]
 	}
   render() {
     return (
@@ -47,11 +52,18 @@ class manage extends Component {
 			      	})
 			      }
 		    </Row>
-		</div>
-		<div className="main-cont">
-
-		</div>
-      </div>
+			</div>
+			<div className="main-cont">
+				<Row gutter = {24}>
+					<Col span = {12} >
+						< TabFrame echartWidth = "chart-item" title = "司机排名统计" / >
+					</Col>
+					<Col span = {12}>
+						< TabFrame echartWidth = "chart-item" yAxisData = {this.state.carSellerData} xAxisData = {this.state.carData} echartBg = {this.state.echartBg} title = "车辆信息排名" / >
+					</Col>
+				</Row>
+			</div>
+    </div>
     );
   }
 }

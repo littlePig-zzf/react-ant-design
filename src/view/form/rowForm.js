@@ -40,7 +40,11 @@ class RegistrationForm extends Component {
       	<form onSubmit={this.handleSubmit}>
           <label>
             name:
-            <Input ref="user" style={InputWidth} placeholder="Basic usage" onBlur={ this.handleChange }/>
+            <Input ref="user" style={InputWidth} placeholder="Basic usage" onKeyUp={ this.handleChange }/>
+          </label>
+          <label>
+            job:
+            < Input ref = "job" style = {InputWidth} placeholder = "请填写你从事的职业" onKeyUp = { this.handleChange }/>
           </label>
           <Button type="primary" htmlType="submit">提交</Button>
         </form>

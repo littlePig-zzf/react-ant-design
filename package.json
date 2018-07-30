@@ -6,6 +6,7 @@
     "antd": "^3.3.3",
     "axios": "^0.17.1",
     "babel-plugin-import": "^1.6.7",
+    "echarts": "^4.1.0",
     "node-sass-chokidar": "^1.2.2",
     "npm-run-all": "^4.1.2",
     "react": "^16.2.0",

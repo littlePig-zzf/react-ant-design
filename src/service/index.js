@@ -1,5 +1,4 @@
 import axios from './axios';
-//import {Storage} from 'commons/js/utils';
 
 let http = {
 
@@ -23,9 +22,9 @@ let http = {
 
 }
 
-export default function(){
-    let parameter = Array.from(arguments)
-    if(typeof arguments[1] === "function"){
+export default function() {
+    let parameter = Array.from(arguments)  //将类数组转换成数组
+    if (typeof arguments[1] === "function") {
         parameter.splice(1, 0, '')
     }
     let [which, params, success, failure] = parameter

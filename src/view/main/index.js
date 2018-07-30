@@ -50,8 +50,6 @@ class MainIndex extends Component {
   }
   
   getMenu() {
-    // console.log(this.state.curSelectKey)
-    // this.refs.bread.getRouterFun()
     let menu = [];
     getNavData.forEach((item, index)=>{
         if(item.children) {

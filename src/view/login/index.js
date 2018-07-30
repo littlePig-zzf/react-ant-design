@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
 import { hashHistory } from 'react-router';
-// import { Link } from 'react-router-dom'; 
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 const FormItem = Form.Item;
 
@@ -20,9 +19,9 @@ class Login extends Component {
         global.$http(global.$api.common.index, values, (res)=>{
         	console.log(res)
         	this.setState({loading: false})
-        	if(res.code !== 200){
+        	if (res.code !== 200) {
 						message.error(res.data)
-        	}else{
+        	} else {
 		        hashHistory.push('/MainIndex')
         	}
         }, (error)=>{

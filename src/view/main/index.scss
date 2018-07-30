@@ -54,9 +54,13 @@
     }
   }
   .main-cont {
+    width: 100%;
     min-height: 300px;
     margin-top: 24px;
-    background-color: #fff;
+    box-sizing: border-box;
+    .chart-item {
+      background-color: #fff;
+    }
   }
 }
 
