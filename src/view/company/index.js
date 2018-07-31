@@ -16,7 +16,11 @@ class Company extends Component {
 	    });
 	};
 	delFun = (key) => {
-		console.log(key)
+		const data = this.state.data
+		delete data[key]
+		this.setState({
+			data: data
+		})
 	};
 	getData = () => {
 		this.setState({loading: true});
@@ -35,48 +39,48 @@ class Company extends Component {
 	}
 	componentDidMount() {
 
-  	}	
-  	render() {
-	  	let { sortedInfo } = this.state;
-	    sortedInfo = sortedInfo || {};
+	}	
+	render() {
+		let { sortedInfo } = this.state;
+		sortedInfo = sortedInfo || {};
 
-	  	const columns = [{
-		  title: 'Name',
-		  dataIndex: 'name',
+		const columns = [{
+			title: 'Name',
+			dataIndex: 'name',
 		}, {
-		  title: 'Age',
-		  dataIndex: 'age',
-		  key: 'age',
-	      sorter: (a, b) => a.age - b.age,
-	      sortOrder: sortedInfo.columnKey === 'age' && sortedInfo.order,
+			title: 'Age',
+			dataIndex: 'age',
+			key: 'age',
+				sorter: (a, b) => a.age - b.age,
+				sortOrder: sortedInfo.columnKey === 'age' && sortedInfo.order,
 		}, {
-		  title: 'Address',
-		  dataIndex: 'address',
+			title: 'Address',
+			dataIndex: 'address',
 		},{ 
-		  title: 'Action',
-		  dataIndex: '',
-		  render: (text, record) => {
-		  	return (
-			  	<Popconfirm title="Are you sure delete this task?" onConfirm={ () => this.delFun(record.key) } okText="Yes" cancelText="No">
-				    <a>Delete</a>
+			title: 'Action',
+			dataIndex: '',
+			render: (text, record) => {
+				return (
+					<Popconfirm title="Are you sure delete this task?" onConfirm={ () => this.delFun(record.key) } okText="Yes" cancelText="No">
+						<a>Delete</a>
 				</Popconfirm>
-			  )
-		  }
+				)
+			}
 		}];
 
 		const rowSelection = {
-		  onChange: (selectedRowKeys, selectedRows) => {
-		    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-		  }
+			onChange: (selectedRowKeys, selectedRows) => {
+				console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+			}
 		};
 
 		
-	    return (
-	      <div className="container">
-	          <h2 className="title">公司列表</h2>
-	          <Table {...this.state} rowSelection={rowSelection} columns={columns} dataSource={this.state.data} onChange={this.handleChange}/>
-	      </div>
-	    );
+		return (
+			<div className="container">
+					<h2 className="title">公司列表</h2>
+					<Table {...this.state} rowSelection={rowSelection} columns={columns} dataSource={this.state.data} onChange={this.handleChange}/>
+			</div>
+		);
 	}
 }
 

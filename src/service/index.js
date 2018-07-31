@@ -19,7 +19,6 @@ let http = {
             if(failure) failure(error);
         });
     }
-
 }
 
 export default function() {

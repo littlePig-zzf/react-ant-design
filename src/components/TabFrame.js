@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 // 引入 ECharts 主模块
 import echarts from 'echarts/lib/echarts';
 // 引入柱状图
@@ -10,16 +11,12 @@ import 'echarts/lib/component/title';
 export default class TabFrame extends Component {
     componentDidMount() {
         this.initEchart()
-        
     }
-    initEchart(which) {
+    initEchart() {
         // 基于准备好的dom，初始化echarts实例
         let myChart = echarts.init(this.refs.echart);
         // 绘制图表
         myChart.setOption({
-            title: {
-                // text: 'ECharts 入门示例'
-            },
             tooltip: {},
             xAxis: {
                 data: this.props.xAxisData
@@ -38,10 +35,11 @@ export default class TabFrame extends Component {
                 data: this.props.yAxisData
             }]
         });
+        myChart.resize()
     }
     render() {
         window.onresize = () => {
-            this.initEchart('resize')
+            this.initEchart()
         }
         const styleObj = {
             tabContainer: {
@@ -74,7 +72,7 @@ export default class TabFrame extends Component {
                         {
                             this.props.tabData.map((item, index) => {
                                 return (
-                                    <span style = { styleObj.tabToolItem } key = { index }> {item} </span>
+                                    <span onClick = { this.searchEchart } style = { styleObj.tabToolItem } key = { index }> {item} </span>
                                 )
                             })
                         }

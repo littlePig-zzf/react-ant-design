@@ -1,6 +1,11 @@
 // 对应的侧边栏
 export const getNavData = [
   {
+    name: '首页',
+    path: '/MainIndex',
+    icon: 'home'
+  },
+  {
     name: '公司列表',
     path: '/MainIndex/companyIndex',
     icon: 'video-camera'

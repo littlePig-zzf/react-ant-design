@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link, browserHistory } from 'react-router';
+import {Link, browserHistory } from 'react-router';
 import { Layout, Menu, Icon, Dropdown } from 'antd';
 import { getNavData } from '../../common/nav';
 
 import MainCont from './mainCont';
-import BreadItem from '../../components/BreadItem'
+// import BreadItem from '../../components/BreadItem'
 import './index.css';
 
 const { Header, Content, Sider } = Layout;
@@ -25,9 +25,9 @@ class MainIndex extends Component {
   componentWillMount() {
     let path = browserHistory.getCurrentLocation().hash;  //获取当前的路由
     let curPath = path.substr(1, path.length-1);
-    this.setState({
-      curPath: path.substr(1, path.length-1)
-    })
+    // this.setState({
+    //   curPath: path.substr(1, path.length-1)
+    // })
     getNavData.forEach((item, index)=>{
       if(item.children) {
         item.children.forEach((cItem,cIndex)=>{
@@ -40,7 +40,7 @@ class MainIndex extends Component {
         })
       }
       else{
-        if(Object.is(item.path, curPath)){
+        if (Object.is(item.path, curPath)) {
           this.setState({  //使用setState修改state数据之后，并不能在这里直接打印最新的state的值，因为修改了之后还会执行一遍willUpdate
             curSelectKey: [index.toString()]
           })
@@ -52,26 +52,24 @@ class MainIndex extends Component {
   getMenu() {
     let menu = [];
     getNavData.forEach((item, index)=>{
-        if(item.children) {
-            menu.push(
-              <SubMenu
-                key={index}
-                title={<span><Icon type={item.icon} /><span>{item.name}</span></span>}>
-              {
-                this.getSubMenu(item.children, index)
-              }
-              </SubMenu>
-            )
-        }else{
-            menu.push(
-              <Menu.Item key={index}>
-                <Link to={item.path}>
-                  <Icon type={item.icon} />
-                  <span>{item.name}</span>
-                </Link>
-              </Menu.Item>
-          )
-        }
+      if(item.children) {
+        menu.push(
+          <SubMenu
+            key={index}
+            title={<span><Icon type={item.icon} /><span>{item.name}</span></span>}>
+            {this.getSubMenu(item.children, index)}
+          </SubMenu>
+        )
+      }else{
+        menu.push(
+          <Menu.Item key={index}>
+            <Link to={item.path}>
+              <Icon type={item.icon} />
+              <span>{item.name}</span>
+            </Link>
+          </Menu.Item>
+        )
+      }
     })
     return menu;
   }
@@ -124,7 +122,7 @@ class MainIndex extends Component {
                 </Dropdown>
               </Header>
               <Content style={{ margin: '24px', background: '#f0f2f5', minHeight: 280 }}>
-                <BreadItem ref="bread"></BreadItem>
+                {/* <BreadItem ref="bread"></BreadItem> */}
                 {this.props.children || <MainCont />}
               </Content>
             </Layout>

@@ -17,7 +17,6 @@ class Login extends Component {
       if (!err) {
         console.log('Received values of form: ', values);
         global.$http(global.$api.common.index, values, (res)=>{
-        	console.log(res)
         	this.setState({loading: false})
         	if (res.code !== 200) {
 						message.error(res.data)

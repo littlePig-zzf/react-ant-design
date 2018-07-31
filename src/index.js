@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 import App from './App';
 import Login from './view/login';
 import { Route, Router, hashHistory, IndexRedirect } from 'react-router';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 // 路由配置
 import MainIndex from './view/main/index';
@@ -22,12 +22,7 @@ import RowForm from './view/form/rowForm';
 
 import errorPage from './view/errorPage/index'; //找不到路由
 
-
-const requireFun = (nextState,replace)=>{
-
-}
-
-let routes = <Route path="/" onEnter={requireFun} component={App} >
+let routes = <Route path="/" component={App} >
 				<IndexRedirect to="/Login" />
 				<Route path="/Login" component={Login}/>
 				<Route path="/MainIndex" component={MainIndex} >
@@ -50,7 +45,7 @@ ReactDOM.render((
 	<Router history={hashHistory} routes={routes} />
   	), document.getElementById('root'));
 
-registerServiceWorker();
+// registerServiceWorker();
 
 
 

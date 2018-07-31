@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Row, Col, Icon } from 'antd';
 import './index.scss';
-
 import TabFrame from "../../components/TabFrame";
 
 class manage extends Component {
@@ -37,7 +36,7 @@ class manage extends Component {
       <div>
       	<div className="main-header">
 		    <Row gutter={16}>
-			      {
+			    {
 			      	this.state.cardData.map((item,index)=>{
 			      		return (
 					      	<Col className="gutter-row" span={6} key={index}>
@@ -50,20 +49,20 @@ class manage extends Component {
 			        	 	</Col>
 		      			)
 			      	})
-			      }
+			    }
 		    </Row>
-			</div>
-			<div className="main-cont">
-				<Row gutter = {24}>
-					<Col span = {12} >
-						< TabFrame echartWidth = "chart-item" title = "司机排名统计" / >
-					</Col>
-					<Col span = {12}>
-						< TabFrame echartWidth = "chart-item" yAxisData = {this.state.carSellerData} xAxisData = {this.state.carData} echartBg = {this.state.echartBg} title = "车辆信息排名" / >
-					</Col>
-				</Row>
-			</div>
-    </div>
+		</div>
+		<div className="main-cont">
+			<Row gutter = {24}>
+				<Col span = {12}>
+					<TabFrame echartWidth = "chart-item" title = "司机排名统计" />
+				</Col>
+				<Col span = {12}>
+					<TabFrame echartWidth = "chart-item" yAxisData = {this.state.carSellerData} xAxisData = {this.state.carData} echartBg = {this.state.echartBg} title = "车辆信息排名" />
+				</Col>
+			</Row>
+		</div>
+	  </div>
     );
   }
 }
