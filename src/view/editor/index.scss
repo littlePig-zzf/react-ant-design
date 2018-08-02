@@ -1,0 +1,16 @@
+.editorCon {
+    .editorHead {
+        display: flex;
+        margin-bottom: 20px;
+        h4 {
+            flex: 1;
+        }
+        .previewBtn {
+            margin-right: 15px;
+        }
+    }
+    .words {
+        margin-bottom: 0;
+        text-align: right;
+    }
+}

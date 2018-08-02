@@ -48,5 +48,10 @@ export const getNavData = [
         path: '/MainIndex/formIndex/RowForm'
       }
     ]
+  },
+  {
+    name: 'html编辑器',
+    path: '/MainIndex/editorIndex',
+    icon: 'edit'
   }
 ]

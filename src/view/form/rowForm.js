@@ -8,25 +8,22 @@ class RegistrationForm extends Component {
     this.state = {
       username: ''
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit  = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = e => {
     this.setState({
-      username: event.target.value
+      username: e.target.value
     })
   }
 
-  handleSubmit(event) {
+  handleSubmit = e => {
     if(this.state.username === '') {
       message.error('请填写下面输入框')
       ReactDOM.findDOMNode(this.refs.user).focus();
       return
     }
     message.success('账户名为： ' + this.state.username);
-    event.preventDefault();
+    e.preventDefault();
   }
 
   render() {

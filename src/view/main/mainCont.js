@@ -37,8 +37,10 @@ class manage extends Component {
 	}
 	render() {
 		window.onresize = () => {
-			this.refs.driverEchart.initEchart()
-			this.refs.carEchart.initEchart()
+			if (this.refs.driverEchart || this.refs.carEchart) {
+				this.refs.driverEchart.initEchart()
+				this.refs.carEchart.initEchart()
+			}
 		}
 		return (
 			<div>
