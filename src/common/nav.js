@@ -37,7 +37,7 @@ export const getNavData = [
   {
     name: '表单列表',
     path: '/MainIndex/formIndex',
-    icon: 'upload',
+    icon: 'file-text',
     children: [
       {
         name: '使用ant组件',
@@ -53,5 +53,10 @@ export const getNavData = [
     name: 'html编辑器',
     path: '/MainIndex/editorIndex',
     icon: 'edit'
+  },
+  {
+    name: '自定义主题色',
+    path: '/MainIndex/themeColor',
+    icon: 'appstore-o'
   }
 ]
