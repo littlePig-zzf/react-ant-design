@@ -13,7 +13,8 @@
     "react-dom": "^16.2.0",
     "react-router": "3.2.0",
     "react-scripts": "1.1.1",
-    "wangeditor": ">=3.0.0"
+    "wangeditor": ">=3.0.0",
+    "xss": "^1.0.3"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",

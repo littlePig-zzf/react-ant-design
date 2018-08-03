@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import './index.css'
 import wangeditor from 'wangeditor'
 import { Modal, Button, message } from 'antd';
+import xss from 'xss'  //防止xss攻击
 
 class Company extends Component {
     state = {
         editorContent: '',
+        disposeCont: '',
         words: 0,
         maxWords: 150000,
         showModal: false
@@ -41,10 +43,12 @@ class Company extends Component {
         editor.customConfig.onchange = html => {
 
             this.setState({
-                editorContent: html,
-                words: editor.txt.text().length
-            })
+              disposeCont: html,
+              words: editor.txt.text().length
+            });
 
+            console.log(html);
+            
             if (this.state.words > this.state.maxWords) {
                 message.warning(`请将字数控制在${this.state.maxWords}`)
             }
@@ -52,8 +56,24 @@ class Company extends Component {
         editor.create()
     }
     previewContent = (e) => {  //函数参数写多一个e，在调用方法时可不使用bind(this)的方法
+        // console.log(filterXSS(this.state.disposeCont));
+        const html = xss(this.state.disposeCont, {
+            onIgnoreTag: (tag, html, options) => {
+                if (tag === "blockquote") {
+                    return tag + '"' + xss.escapeHtml(html) + '"'
+                }
+            },
+            onIgnoreTagAttr: (tag, name, value, isWhiteAttr) => {
+                if (name === 'style') {
+                    return name + '="' + xss.escapeAttrValue(value) + '"'
+                }
+            }
+        })
+        console.log('back', html);
+        
         this.setState({
             showModal: true,
+            editorContent: html
         });
     }
     handleCancel = (e) => {
@@ -63,7 +83,7 @@ class Company extends Component {
     }
     render() {
         return (
-            <div className="editorCon">
+            <div className="editorContainer">
                 <Modal
                     title="文章预览"
                     zIndex="199999"
@@ -77,7 +97,7 @@ class Company extends Component {
                         <h4>wangEditor编辑器</h4>
                         <Button className="previewBtn" type="primary" disabled={this.state.words > 0 ? '': 'false'} onClick={this.previewContent}>预览</Button>
                     </div>
-                    <div ref="editorElem" style={{textAlign: 'left', zIndex: 1}}></div>
+                    <div ref="editorElem" className="editorCont" style={{textAlign: 'left', zIndex: 1}}></div>
                     <p className="words">{this.state.words}/{this.state.maxWords}</p>
                 </div>
             </div>

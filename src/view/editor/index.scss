@@ -1,4 +1,4 @@
-.editorCon {
+.editorContainer {
     .editorHead {
         display: flex;
         margin-bottom: 20px;
@@ -12,5 +12,10 @@
     .words {
         margin-bottom: 0;
         text-align: right;
+    }
+    .editorCont {
+        .w-e-text-container {
+            height: 500px !important;
+        }
     }
 }
