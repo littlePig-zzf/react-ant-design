@@ -20,6 +20,7 @@ import Form from './view/form/form';
 import RowForm from './view/form/rowForm';
 import EditorIndex from './view/editor/index'
 import themeColor from './view/themeColor/index'
+import canvas from './view/canvas/index'
 
 import errorPage from './view/errorPage/index'; //找不到路由
 
@@ -40,6 +41,7 @@ let routes = <Route path="/" component={App} >
 					</Route>
 					<Route path="editorIndex" component={EditorIndex}></Route>
 					<Route path="themeColor" component={themeColor}></Route>
+					<Route path="canvas" component={canvas}></Route>
 				</Route>
 				<Route path="*" component={errorPage}/>
 			</Route>

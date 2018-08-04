@@ -41,7 +41,7 @@ class RegistrationForm extends Component {
           </label>
           <label>
             job:
-            < Input ref = "job" style = {InputWidth} placeholder = "请填写你从事的职业" onKeyUp = { this.handleChange }/>
+            <Input ref = "job" style = {InputWidth} placeholder = "请填写你从事的职业" onKeyUp = { this.handleChange }/>
           </label>
           <Button type="primary" htmlType="submit">提交</Button>
         </form>

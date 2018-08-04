@@ -58,5 +58,10 @@ export const getNavData = [
     name: '自定义主题色',
     path: '/MainIndex/themeColor',
     icon: 'appstore-o'
+  },
+  {
+    name: '画板',
+    path: '/MainIndex/canvas',
+    icon: 'ant-design'
   }
 ]
