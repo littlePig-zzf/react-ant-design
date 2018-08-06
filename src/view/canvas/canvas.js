@@ -101,10 +101,8 @@ draw.prototype.init = function () {
         reader.onload = function (ent) {
           var img = new Image()
           img.src = ent.target.result
-          img.width = 800
-          img.height = 800
 
-          _this.pen.drawImage(img, 0, 0)
+          _this.pen.drawImage(img, 0, 0, 800, 800)
         }
       }
     } else if (event.target.id === 'save') {
@@ -119,10 +117,7 @@ draw.prototype.init = function () {
     }
   }, false)
   this.clearCanvas.addEventListener('click', () => {
-    // _this.pen.clearRect(0, 0, 1000, 800)
-    let tempWidth = _this.penal.width
-    _this.penal.width = _this.penal.height
-    _this.penal.width = tempWidth
+    _this.pen.clearRect(0, 0, 1100, 800)
   })
 }
 
