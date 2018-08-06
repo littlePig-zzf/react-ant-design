@@ -26,8 +26,8 @@ class canvas extends Component {
     curSelect: "pen"
   };
   componentDidMount() {
-      canvasFrame = new draw();
-      canvasFrame.init();
+    canvasFrame = new draw();
+    canvasFrame.init();
   }
   changeLineWidth(value) {
     this.setState({

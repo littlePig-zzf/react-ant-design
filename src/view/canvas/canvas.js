@@ -21,10 +21,13 @@ draw.prototype.init = function () {
         }
         originX = e.clientX - _this.penal.offsetLeft //原点坐标
         originY = e.clientY - _this.penal.offsetTop
-        
+        _this.pen.beginPath()   //如果需要改变笔触颜色，之前不被影响，则需要加入这句，进行重新绘制
         _this.pen.moveTo(originX, originY)
         _this.pen.strokeStyle = _this.color.placeholder
         _this.pen.lineWidth = Number(_this.lineWidth.placeholder.substr(0,1))
+
+        _this.pen.lineTo(originX, originY)
+        _this.pen.stroke()
     }, false)
 
     this.penal.addEventListener('mousemove', function(e) {
@@ -80,6 +83,7 @@ draw.prototype.init = function () {
         }
     }, false)
     this.penal.addEventListener('mouseleave', function () {
+        _this.pen.save()
         if (_this.isDraw) {
             _this.isDraw = false;
             _this.pen.closePath();
