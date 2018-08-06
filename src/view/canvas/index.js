@@ -10,6 +10,8 @@ const ButtonGroup = Button.Group;
 let canvasFrame = ''
 class canvas extends Component {
   state = {
+    canvasWidth: 1100,
+    canvasHeight: 500,
     paintTool: [
       { id: "pen", icon: "edit", txt: '铅笔' },
       { id: "line", icon: "minus", txt: '直线' },
@@ -98,8 +100,8 @@ class canvas extends Component {
           <div className="canvas-con">
             <canvas
               id="penal"
-              width="1100"
-              height="500"
+              width={this.state.canvasWidth}
+              height={this.state.canvasHeight}
               style={{ border: "1px solid #eee" }}
             />
           </div>

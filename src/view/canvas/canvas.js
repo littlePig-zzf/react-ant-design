@@ -1,4 +1,4 @@
-function draw () {
+function draw(canvasWidth = 1100, canvasHeight = 800) {
   this.type = 'pen'
   this.penal = document.getElementById('penal')
   this.pen = this.penal.getContext('2d')
@@ -8,6 +8,8 @@ function draw () {
   this.select = document.getElementById('select'); // 选择面板
   this.clearCanvas = document.getElementById('new')
   this.img = new Image(); // 用于动态绘制指向，矩形，原型
+  this.canvasWidth = canvasWidth
+  this.canvasHeight = canvasHeight
 }
 //  不能使用es6的箭头函数 https://segmentfault.com/a/1190000007074846
 draw.prototype.init = function () {
@@ -42,7 +44,7 @@ draw.prototype.init = function () {
         _this.pen.strokeStyle = '#f00'
         _this.pen.clearRect(x - 10, y - 10, _this.pen.lineWidth, _this.pen.lineWidth)
       }else if (_this.type === 'line') {
-        _this.pen.clearRect(0, 0, 1000, 800)
+        _this.pen.clearRect(0, 0, _this.canvasWidth, _this.canvasHeight)
         _this.pen.drawImage(_this.img, 0, 0)
         _this.pen.beginPath()
         _this.pen.moveTo(originX, originY)
@@ -50,7 +52,7 @@ draw.prototype.init = function () {
         _this.pen.stroke()
         _this.pen.closePath()
       }else if (_this.type === 'rect') {
-        _this.pen.clearRect(0, 0, 1000, 800)
+        _this.pen.clearRect(0, 0, _this.canvasWidth, _this.canvasHeight)
         _this.pen.drawImage(_this.img, 0 , 0)
         _this.pen.beginPath()
 
@@ -64,7 +66,7 @@ draw.prototype.init = function () {
         _this.pen.stroke()
         _this.pen.closePath()
       }else if (_this.type === 'arc') {
-        _this.pen.clearRect(0, 0, 1000, 800)
+        _this.pen.clearRect(0, 0, _this.canvasWidth, _this.canvasHeight)
         _this.pen.drawImage(_this.img, 0, 0)
         _this.pen.beginPath()
         if (x < originX) {
@@ -101,8 +103,9 @@ draw.prototype.init = function () {
         reader.onload = function (ent) {
           var img = new Image()
           img.src = ent.target.result
-
-          _this.pen.drawImage(img, 0, 0, 800, 800)
+          img.onload = function () {
+            _this.pen.drawImage(img, 0, 0, _this.canvasWidth, _this.canvasHeight)
+          }
         }
       }
     } else if (event.target.id === 'save') {
@@ -117,7 +120,7 @@ draw.prototype.init = function () {
     }
   }, false)
   this.clearCanvas.addEventListener('click', () => {
-    _this.pen.clearRect(0, 0, 1100, 800)
+    _this.pen.clearRect(0, 0, _this.canvasWidth, _this.canvasHeight)
   })
 }
 
