@@ -1,4 +1,4 @@
-function draw(canvasWidth = 1100, canvasHeight = 800) {
+function draw (imgWidth = 300 , imgHeight = 200 , canvasWidth = 1100 , canvasHeight = 800) {
   this.type = 'pen'
   this.penal = document.getElementById('penal')
   this.pen = this.penal.getContext('2d')
@@ -10,6 +10,8 @@ function draw(canvasWidth = 1100, canvasHeight = 800) {
   this.img = new Image(); // 用于动态绘制指向，矩形，原型
   this.canvasWidth = canvasWidth
   this.canvasHeight = canvasHeight
+  this.imgWidth = canvasWidth
+  this.imgHeight = canvasHeight
 }
 //  不能使用es6的箭头函数 https://segmentfault.com/a/1190000007074846
 draw.prototype.init = function () {
@@ -23,7 +25,7 @@ draw.prototype.init = function () {
     }
     originX = e.clientX - _this.penal.offsetLeft // 原点坐标
     originY = e.clientY - _this.penal.offsetTop
-      
+
     _this.pen.beginPath() // 如果需要改变笔触颜色，之前不被影响，则需要加入这句，进行重新绘制
     _this.pen.moveTo(originX, originY)
     _this.pen.strokeStyle = _this.color.placeholder
@@ -38,8 +40,8 @@ draw.prototype.init = function () {
       let y = e.clientY - _this.penal.offsetTop
       let newOriginX = originX,newOriginY = originY
       if (_this.type === 'pen') {
-          _this.pen.lineTo(x, y)
-          _this.pen.stroke()
+        _this.pen.lineTo(x, y)
+        _this.pen.stroke()
       }else if (_this.type === 'robber') {
         _this.pen.strokeStyle = '#f00'
         _this.pen.clearRect(x - 10, y - 10, _this.pen.lineWidth, _this.pen.lineWidth)
@@ -104,7 +106,7 @@ draw.prototype.init = function () {
           var img = new Image()
           img.src = ent.target.result
           img.onload = function () {
-            _this.pen.drawImage(img, 0, 0, _this.canvasWidth, _this.canvasHeight)
+            _this.pen.drawImage(img, 0, 0, _this.imgWidth, _this.imgHeight)
           }
         }
       }

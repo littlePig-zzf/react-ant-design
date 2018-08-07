@@ -63,5 +63,10 @@ export const getNavData = [
     name: '画板',
     path: '/MainIndex/canvas',
     icon: 'ant-design'
+  },
+  {
+    name: 'svg动画',
+    path: '/MainIndex/svg',
+    icon: 'share-alt'
   }
 ]

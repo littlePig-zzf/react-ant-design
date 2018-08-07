@@ -3,7 +3,7 @@ import { Button, Slider } from "antd";
 import "rc-color-picker/assets/index.css";
 import ColorPicker from "rc-color-picker";
 import "./index.css"
-import draw from "./canvas"
+import draw from "./canvas.js"
 const ButtonGroup = Button.Group;
 // const Option = Select.Option;
 
