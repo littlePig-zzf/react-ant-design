@@ -4,7 +4,7 @@ import { Layout, Menu, Icon, Dropdown } from 'antd';
 import { getNavData } from '../../common/nav';
 
 import MainCont from './mainCont';
-// import BreadItem from '../../components/BreadItem'
+import BreadItem from '../../components/BreadItem'
 import './index.css';
 
 const { Header, Content, Sider } = Layout;
@@ -22,7 +22,12 @@ class MainIndex extends Component {
       collapsed: !this.state.collapsed,
     });
   }
+
   componentWillMount() {
+    this.getCurIndex()
+  }
+
+  getCurIndex() {
     let path = browserHistory.getCurrentLocation().hash;  //获取当前的路由
     let curPath = path.substr(1, path.length-1);
     // this.setState({
@@ -122,8 +127,11 @@ class MainIndex extends Component {
                 </Dropdown>
               </Header>
               <Content style={{ margin: '24px', background: '#f0f2f5', minHeight: 280 }}>
+                {/* <routerChild /> */}
                 {/* <BreadItem ref="bread"></BreadItem> */}
-                {this.props.children || <MainCont />}
+                  <BreadItem routes={this.props.routes} params={this.props.params} />    
+                  {/* { this.props.routes } */}
+                  {this.props.children || <MainCont />}
               </Content>
             </Layout>
           </Layout>

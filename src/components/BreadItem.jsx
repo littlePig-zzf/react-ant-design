@@ -1,45 +1,25 @@
 import React, { Component } from 'react';
 import { Breadcrumb } from 'antd';
-import { Link, browserHistory } from 'react-router';
-import { getNavData } from '../common/nav';
+// import { Link } from 'react-router';
 
 export default class BreadItem extends Component {
 	state = {
-		data: []
-	};
-
-	getRouterFun() {
-		let path = browserHistory.getCurrentLocation().hash;  //获取当前的路由
-		let curPath = path.substr(1, path.length - 1);
-		let res = [];
-		getNavData.forEach((item, index)=>{
-			if(item.children) {
-				item.children.forEach((cItem,cIndex)=>{
-					if(Object.is(cItem.path, curPath)){
-						res.push(item);
-						res.push(cItem);
-					}
-				})
-			}
-			else{
-				if(Object.is(item.path, curPath)){
-					res.push(item);
-				}
-			}
-		})
-		this.setState({data: res})
+		routes: []
 	};
 	itemRender = (route, params, routes, paths) => {
-		const last = routes.indexOf(route) === routes.length - 1;
-		return last ? <span>{route.name}</span> : <Link to={paths.join('/')}>{route.name}</Link>;
+		return route.name ? <span>{route.name}</span> : ''
+		// const last = routes.indexOf(route) === routes.length - 1;
+		// let breadItem = last ? <span>{route.name}</span> : route.name ? <Link to={paths.join('/')}>{route.name}</Link> : '';
+		// return breadItem
 	}
 	render() {
 		return (
-			<Breadcrumb style={{ margin: '0 0 10px'}} itemRender={this.itemRender} routes={this.state.data} />	
+			<Breadcrumb style={{ margin: '0 0 10px'}} itemRender={this.itemRender} routes={this.props.routes} params={this.props.params} />	
 		)
 	}
 }
 
 BreadItem.defaultProps = {
-  data: [{name: 'ind0'}, {name: 'ddd'}]
+  routes: [{name: 'ind0'}, {name: 'ddd'}],
+  params: []
 };

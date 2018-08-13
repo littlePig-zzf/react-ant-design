@@ -25,25 +25,25 @@ import svg from './view/svg/index'
 
 import errorPage from './view/errorPage/index'; //找不到路由
 
-let routes = <Route path="/" component={App} >
+let routes = <Route path="/" component={App}>
 				<IndexRedirect to="/Login" />
-				<Route path="/Login" component={Login}/>
-				<Route path="/MainIndex" component={MainIndex} >
-					<Route path="companyIndex" component={CompanyIndex} />
-					<Route path="Manage" component={Manage}>
-						<Route path="UserIndex" component={UserIndex} />
-						<Route path="RoleIndex" component={RoleIndex} />
-						<Route path="permitIndex" component={PermitIndex} />
+				<Route path="/Login" name="登录" component={Login}/>
+				<Route path="/MainIndex" name="首页" component={MainIndex} >
+					<Route path="companyIndex" name="公司列表" component={CompanyIndex} />
+					<Route path="Manage" name="管理设置" component={Manage}>
+						<Route path="UserIndex" name="用户列表" component={UserIndex} />
+						<Route path="RoleIndex" name="角色列表" component={RoleIndex} />
+						<Route path="permitIndex" name="权限列表" component={PermitIndex} />
 					</Route>
-					<Route path="storeIndex" component={StoreIndex} />
-					<Route path="formIndex" component={FormIndex} >
-						<Route path="Form" component={Form} />
-						<Route path="RowForm" component={RowForm} />
+					<Route path="storeIndex" name="门店列表" component={StoreIndex} />
+					<Route path="formIndex" name="表单列表" component={FormIndex} >
+						<Route path="Form" name="使用ant组件" component={Form} />
+						<Route path="RowForm" name="不使用组件" component={RowForm} />
 					</Route>
-					<Route path="editorIndex" component={EditorIndex}></Route>
-					<Route path="themeColor" component={themeColor}></Route>
-					<Route path="canvas" component={canvas}></Route>
-					<Route path="svg" component={svg}></Route>
+					<Route path="editorIndex" name="html编辑器" component={EditorIndex}></Route>
+					<Route path="themeColor" name="自定义主题色" component={themeColor}></Route>
+					<Route path="canvas" name="画板" component={canvas}></Route>
+					<Route path="svg" name="svg动画" component={svg}></Route>
 				</Route>
 				<Route path="*" component={errorPage}/>
 			</Route>
