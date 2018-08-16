@@ -25,7 +25,6 @@ class Company extends Component {
 	getData = () => {
 		this.setState({loading: true});
 		global.$http(global.$api.common.company, (res)=>{
-			// console.log(res)
 			this.setState(
 				{data: res.data, loading: false}
 			)
