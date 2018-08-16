@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import 'antd/dist/antd.css';
 
 import App from './App';
@@ -41,15 +41,21 @@ const routes =
 					<Route path={home+"themeColor"} name="自定义主题色" component={themeColor}></Route>
 					<Route path={home+"canvas"} name="画板" component={canvas}></Route>
 					<Route path={home+"svg"} name="svg动画" component={svg}></Route>
-					<Manage>
-						<Route path={home+"Manage/UserIndex"} name="用户列表" component={UserIndex} />
-						<Route path={home+"Manage/RoleIndex"} name="角色列表" component={RoleIndex} />
-						<Route path={home+"Manage/permitIndex"} name="权限列表" component={PermitIndex} />
-					</Manage>
 					<Route path={home+"storeIndex"} name="门店列表" component={StoreIndex} />
+					<Manage>
+						<Switch>
+							<Redirect from={home+"Manage"} to={home+"Manage/UserIndex"} exact />
+							<Route path={home+"Manage/UserIndex"} name="用户列表" component={UserIndex} />
+							<Route path={home+"Manage/RoleIndex"} name="角色列表" component={RoleIndex} />
+							<Route path={home+"Manage/permitIndex"} name="权限列表" component={PermitIndex} />
+						</Switch>
+					</Manage>
 					<FormIndex>
-						<Route path={home+"formIndex/Form"} name="使用ant组件" component={Form} />
-						<Route path={home+"formIndex/RowForm"} name="不使用组件" component={RowForm} />
+						<Switch>
+							<Redirect from={home+"formIndex"} to={home+"formIndex/Form"} exact />
+							<Route path={home+"formIndex/Form"} name="使用ant组件" component={Form} />
+							<Route path={home+"formIndex/RowForm"} name="不使用组件" component={RowForm} />
+						</Switch>
 					</FormIndex>
 				</Switch>
 			</Home>
