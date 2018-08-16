@@ -11,25 +11,25 @@ export const getNavData = [
     path: home+'companyIndex',
     icon: 'video-camera'
   },
-  {
-    name: '管理设置',
-    icon: 'user',
-    path: home+'Manage',
-    children: [
-      {
-        name: '用户列表',
-        path: home+'Manage/UserIndex'
-      },
-      {
-        name: '权限列表',
-        path: home+'Manage/PermitIndex'
-      },
-      {
-        name: '角色列表',
-        path: home+'Manage/RoleIndex'
-      }
-    ]
-  },
+  // {
+  //   name: '管理设置',
+  //   icon: 'user',
+  //   path: home+'Manage',
+  //   children: [
+  //     {
+  //       name: '用户列表',
+  //       path: home+'Manage/UserIndex'
+  //     },
+  //     {
+  //       name: '权限列表',
+  //       path: home+'Manage/PermitIndex'
+  //     },
+  //     {
+  //       name: '角色列表',
+  //       path: home+'Manage/RoleIndex'
+  //     }
+  //   ]
+  // },
   {
     name: '门店列表',
     path: home+'storeIndex',

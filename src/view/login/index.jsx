@@ -22,7 +22,6 @@ class Login extends Component {
 						message.error(res.data)
         	} else {
 						this.props.history.push("/home/MainIndex");
-		        // hashHistory.push('/MainIndex')
         	}
         }, (error)=>{
         	console.log(error)
@@ -35,8 +34,6 @@ class Login extends Component {
     });
   }
   render() {
-		console.log('asdasdads');
-		
     const { getFieldDecorator } = this.props.form;
     return (
 	      <div className="login-box">

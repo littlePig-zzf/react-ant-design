@@ -25,17 +25,15 @@ class MainIndex extends Component {
   }
 
   componentWillMount() {
-    console.log('asdasdsad1231223123', this.props);
     this.getCurIndex()
   }
 
   getCurIndex() {
     let path = this.props.location.pathname;
-    // // let path = browserHistory.getCurrentLocation().hash;  //获取当前的路由
     let curPath = path.substr(1, path.length-1);
-    // this.setState({
-    //   curPath: path.substr(1, path.length-1)
-    // })
+    this.setState({
+      curPath: path.substr(1, path.length-1)
+    })
     getNavData.forEach((item, index)=>{
       if(item.children) {
         item.children.forEach((cItem,cIndex)=>{
@@ -103,11 +101,9 @@ class MainIndex extends Component {
           </Link>
         </Menu.Item>
       </Menu>
-    );
+    )
 
-    console.log(this.props.children);
     return (
-      
       <div className="MainBox">
          <Layout>
             <Sider
@@ -139,7 +135,7 @@ class MainIndex extends Component {
             </Layout>
           </Layout>
       </div>
-    );
+    )
   }
 }
 
