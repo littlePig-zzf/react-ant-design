@@ -1,7 +1,7 @@
 import axios from 'axios'; 
 // import {SERVER_URL} from './api';
 import { message } from 'antd';
-import { hashHistory } from 'react-router'
+// import { hashHistory } from 'react-router'
 
 axios.defaults.baseURL = ''; // 设置默认服务地址
 axios.defaults.timeout = 0;//不设置超时时长
@@ -25,9 +25,9 @@ axios.interceptors.response.use(res => {
           if(!is401){
               is401 = true;
               message.error('身份验证已过期，请重新登录');
-              setTimeout(()=>{
-                  hashHistory.push('/Login');
-              },3000)
+            //   setTimeout(()=>{
+            //       hashHistory.push('/Login');
+            //   },3000)
           }
       }
       return Promise.reject(error);

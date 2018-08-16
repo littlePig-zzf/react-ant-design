@@ -1,72 +1,73 @@
 // 对应的侧边栏
+const home = '/home/'
 export const getNavData = [
   {
     name: '首页',
-    path: '/MainIndex',
+    path: '/home',
     icon: 'home'
   },
   {
     name: '公司列表',
-    path: '/MainIndex/companyIndex',
+    path: home+'companyIndex',
     icon: 'video-camera'
   },
   {
     name: '管理设置',
     icon: 'user',
-    path: 'Manage',
+    path: home+'Manage',
     children: [
       {
         name: '用户列表',
-        path: '/MainIndex/Manage/UserIndex'
+        path: home+'Manage/UserIndex'
       },
       {
         name: '权限列表',
-        path: '/MainIndex/Manage/PermitIndex'
+        path: home+'Manage/PermitIndex'
       },
       {
         name: '角色列表',
-        path: '/MainIndex/Manage/RoleIndex'
+        path: home+'Manage/RoleIndex'
       }
     ]
   },
   {
     name: '门店列表',
-    path: '/MainIndex/storeIndex',
+    path: home+'storeIndex',
     icon: 'upload'
   },
   {
     name: '表单列表',
-    path: '/MainIndex/formIndex',
+    path: home+'formIndex',
     icon: 'file-text',
     children: [
       {
         name: '使用ant组件',
-        path: '/MainIndex/formIndex/Form'
+        path: home+'formIndex/Form'
       },
       {
         name: '不使用组件',
-        path: '/MainIndex/formIndex/RowForm'
+        path: home+'formIndex/RowForm'
       }
     ]
   },
   {
     name: 'html编辑器',
-    path: '/MainIndex/editorIndex',
+    path: home+'editorIndex',
     icon: 'edit'
   },
   {
     name: '自定义主题色',
-    path: '/MainIndex/themeColor',
+    path: home+'themeColor',
     icon: 'appstore-o'
   },
   {
     name: '画板',
-    path: '/MainIndex/canvas',
+    path: home+'canvas',
     icon: 'ant-design'
   },
   {
     name: 'svg动画',
-    path: '/MainIndex/svg',
+    path: home+'svg',
     icon: 'share-alt'
   }
 ]

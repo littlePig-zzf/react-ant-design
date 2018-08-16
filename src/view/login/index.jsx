@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
-import { hashHistory } from 'react-router';
+// import { hashHistory } from 'react-router';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 const FormItem = Form.Item;
 
@@ -21,7 +21,8 @@ class Login extends Component {
         	if (res.code !== 200) {
 						message.error(res.data)
         	} else {
-		        hashHistory.push('/MainIndex')
+						this.props.history.push("/home/MainIndex");
+		        // hashHistory.push('/MainIndex')
         	}
         }, (error)=>{
         	console.log(error)
@@ -34,6 +35,8 @@ class Login extends Component {
     });
   }
   render() {
+		console.log('asdasdads');
+		
     const { getFieldDecorator } = this.props.form;
     return (
 	      <div className="login-box">
@@ -49,7 +52,7 @@ class Login extends Component {
 		          {getFieldDecorator('password', {
 		            rules: [{ required: true, message: 'Please input your Password!' }],
 		          })(
-		            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+		            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}  type="password" placeholder="Password" />
 		          )}
 		        </FormItem>
 		        <FormItem>

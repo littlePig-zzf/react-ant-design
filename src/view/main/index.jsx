@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Link, browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
+import { Link } from "react-router-dom";
 import { Layout, Menu, Icon, Dropdown } from 'antd';
 import { getNavData } from '../../common/nav';
 
@@ -24,11 +25,13 @@ class MainIndex extends Component {
   }
 
   componentWillMount() {
+    console.log('asdasdsad1231223123', this.props);
     this.getCurIndex()
   }
 
   getCurIndex() {
-    let path = browserHistory.getCurrentLocation().hash;  //获取当前的路由
+    let path = this.props.location.pathname;
+    // // let path = browserHistory.getCurrentLocation().hash;  //获取当前的路由
     let curPath = path.substr(1, path.length-1);
     // this.setState({
     //   curPath: path.substr(1, path.length-1)
@@ -95,13 +98,16 @@ class MainIndex extends Component {
     const menu = (
       <Menu>
         <Menu.Item>
-          <Link to="/Login" replace="true">
+          <Link to="/Login" replace={true}>
             退出
           </Link>
         </Menu.Item>
       </Menu>
     );
+
+    console.log(this.props.children);
     return (
+      
       <div className="MainBox">
          <Layout>
             <Sider
@@ -127,11 +133,8 @@ class MainIndex extends Component {
                 </Dropdown>
               </Header>
               <Content style={{ margin: '24px', background: '#f0f2f5', minHeight: 280 }}>
-                {/* <routerChild /> */}
-                {/* <BreadItem ref="bread"></BreadItem> */}
-                  <BreadItem routes={this.props.routes} params={this.props.params} />    
-                  {/* { this.props.routes } */}
-                  {this.props.children || <MainCont />}
+                <BreadItem/>    
+                {this.props.children || <MainCont />}
               </Content>
             </Layout>
           </Layout>
