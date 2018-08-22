@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { browserHistory } from 'react-router';
 import { Link } from "react-router-dom";
 import { Layout, Menu, Icon, Dropdown } from 'antd';
 import { getNavData } from '../../common/nav';

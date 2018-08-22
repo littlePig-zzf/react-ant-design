@@ -7,15 +7,10 @@ import App from './App';
 import Login from './view/login';
 import registerServiceWorker from './registerServiceWorker';
 
-// // 路由配置
+// 路由配置
 import Home from './view/main/index';
 import MainIndex from './view/main/mainCont';
 import CompanyIndex from './view/company/index';
-// import Manage from './view/manage/index';
-// import UserIndex from './view/manage/user';
-// import RoleIndex from './view/manage/role';
-// import PermitIndex from './view/manage/permit';
-import StoreIndex from './view/store/index';
 import FormIndex from './view/form/index';
 import Form from './view/form/form';
 import RowForm from './view/form/rowForm';
@@ -36,20 +31,10 @@ const routes =
 				<Switch>
 					<Route path="/home" exact component={MainIndex} />
 					<Route path={home + "companyIndex"} component={CompanyIndex} />
-					<Route path={home + "storeIndex"} component={StoreIndex} />
 					<Route path={home + "editorIndex"} component={EditorIndex}></Route>
 					<Route path={home + "themeColor"} component={themeColor}></Route>
 					<Route path={home + "canvas"} component={canvas}></Route>
 					<Route path={home + "svg"} component={svg}></Route>
-					<Route path={home + "storeIndex"} component={StoreIndex} />
-					{/* <Manage>
-						<Switch>
-							<Redirect from={home + "Manage"} to={home + "Manage/UserIndex"} exact />
-							<Route path={home + "Manage/UserIndex"} component={UserIndex} />
-							<Route path={home + "Manage/RoleIndex"} component={RoleIndex} />
-							<Route path={home + "Manage/permitIndex"} component={PermitIndex} />
-						</Switch>
-					</Manage> */}
 					<FormIndex>
 						<Switch>
 							<Redirect from={home + "formIndex"} to={home + "formIndex/Form"} exact />
