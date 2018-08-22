@@ -15,7 +15,6 @@ class MainIndex extends Component {
   state = {
     collapsed: false,
     curSelectKey: [],  //当前选择的菜单
-    curPath: '',  //当前选择的路由
     curOpenNav: []  //当前需要打开的二级菜单
   };
   toggle = () => {
@@ -30,14 +29,10 @@ class MainIndex extends Component {
 
   getCurIndex() {
     let path = this.props.location.pathname;
-    let curPath = path.substr(1, path.length-1);
-    this.setState({
-      curPath: path.substr(1, path.length-1)
-    })
     getNavData.forEach((item, index)=>{
       if(item.children) {
         item.children.forEach((cItem,cIndex)=>{
-          if(Object.is(cItem.path, curPath)){
+          if(Object.is(cItem.path, path)){
             this.setState({  //使用setState修改state数据之后，并不能在这里直接打印最新的state的值，因为修改了之后还会执行一遍willUpdate
               curSelectKey: [index + '-' + cIndex],
               curOpenNav: [index.toString()]
@@ -46,7 +41,7 @@ class MainIndex extends Component {
         })
       }
       else{
-        if (Object.is(item.path, curPath)) {
+        if (Object.is(item.path, path)) {
           this.setState({  //使用setState修改state数据之后，并不能在这里直接打印最新的state的值，因为修改了之后还会执行一遍willUpdate
             curSelectKey: [index.toString()]
           })
