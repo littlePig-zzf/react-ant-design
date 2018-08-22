@@ -31,7 +31,7 @@ const home = '/home/'
 const routes = 
 	<App>
 		<Switch>
-			<Route path="/Login" name="登录" component={Login}/>
+			<Route path="/" exact name="登录" component={Login}/>
 			<Home>
 				<Switch>
 					<Route path="/home" exact component={MainIndex} />

@@ -21,7 +21,7 @@ class Login extends Component {
         	if (res.code !== 200) {
 						message.error(res.data)
         	} else {
-						this.props.history.push("/home/MainIndex");
+						this.props.history.push("/home");
         	}
         }, (error)=>{
         	console.log(error)

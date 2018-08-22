@@ -96,7 +96,7 @@ class MainIndex extends Component {
     const menu = (
       <Menu>
         <Menu.Item>
-          <Link to="/Login" replace={true}>
+          <Link to="/" replace={true}>
             退出
           </Link>
         </Menu.Item>

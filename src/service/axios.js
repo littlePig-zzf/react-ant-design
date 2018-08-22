@@ -25,9 +25,9 @@ axios.interceptors.response.use(res => {
           if(!is401){
               is401 = true;
               message.error('身份验证已过期，请重新登录');
-            //   setTimeout(()=>{
-            //       hashHistory.push('/Login');
-            //   },3000)
+              setTimeout(()=>{
+                  this.props.history.push('/Login');
+              },3000)
           }
       }
       return Promise.reject(error);
