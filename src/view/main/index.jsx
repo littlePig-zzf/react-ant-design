@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { Layout, Menu, Icon, Dropdown } from 'antd';
 import { getNavData } from '../../common/nav';
@@ -118,7 +119,7 @@ class MainIndex extends Component {
                 />
                 <Dropdown overlay={menu}>
                   <a className="ant-dropdown-link exitBtn">
-                    littple pig<Icon type="down" />
+                    { this.props.userName }<Icon type="down" />
                   </a>
                 </Dropdown>
               </Header>
@@ -133,4 +134,8 @@ class MainIndex extends Component {
   }
 }
 
-export default MainIndex;
+const mapStateToProps = state => ({
+  userName: state.userName
+});
+
+export default connect(mapStateToProps)(MainIndex);

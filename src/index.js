@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import rootReducer from './reducers'
+
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import 'antd/dist/antd.css';
 
@@ -22,6 +26,8 @@ import svg from './view/svg/index'
 import errorPage from './view/errorPage/index'; //找不到路由
 
 const home = '/home/'
+
+const store = createStore(rootReducer)
 
 const routes = 
 	<App>
@@ -49,9 +55,11 @@ const routes =
 	</App>
 
 ReactDOM.render((
-	<BrowserRouter>
-		{routes}
-	</BrowserRouter>
-  	), document.getElementById('root'));
+	<Provider store={store}>
+		<BrowserRouter>
+			{routes}
+		</BrowserRouter>
+	</Provider>
+  	), document.getElementById('root'))
 
 registerServiceWorker();

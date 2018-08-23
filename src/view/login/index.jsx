@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { setToken, setUserName } from "../../actions";
 import './index.css';
-// import { hashHistory } from 'react-router';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 const FormItem = Form.Item;
 
 class Login extends Component {
 
   state = {
-  	loading: false
-  }
-
+		loading: false,
+		token: '',
+		userName: ''
+	}
+	
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({loading: true})
@@ -17,7 +20,11 @@ class Login extends Component {
       if (!err) {
         console.log('Received values of form: ', values);
         global.$http(global.$api.common.index, values, (res)=>{
-        	this.setState({loading: false})
+					this.setState({loading: false})
+
+					this.props.dispatch(setToken(res.token));
+					this.props.dispatch(setUserName(res.data.userName));
+					console.log(res)
         	if (res.code !== 200) {
 						message.error(res.data)
         	} else {
@@ -32,9 +39,11 @@ class Login extends Component {
 				})
 			}
     });
-  }
+	}
+	
   render() {
-    const { getFieldDecorator } = this.props.form;
+		const { getFieldDecorator } = this.props.form;
+		
     return (
 	      <div className="login-box">
 	      	<Form onSubmit={this.handleSubmit} className="login-form">
@@ -72,4 +81,4 @@ class Login extends Component {
 }
 const WrappedNormalLoginForm = Form.create()(Login);
 
-export default WrappedNormalLoginForm;
+export default connect()(WrappedNormalLoginForm)
