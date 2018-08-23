@@ -1,4 +1,5 @@
 import Mock from 'mockjs';
+import { message } from 'antd';
 
 Mock.setup({timeout: '1200-2600'})
 
@@ -35,6 +36,11 @@ Mock.mock('/api/companyList', () => {
 	    age: `${i}`,
 	    address: `London, Park Lane no. ${i}`,
 	  });
+	}
+
+	if(!localStorage.token) {
+		message.warning('用户验证失败，请重新登录！');
+		return false
 	}
     return res
 })
