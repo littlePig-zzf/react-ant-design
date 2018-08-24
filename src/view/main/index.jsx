@@ -14,7 +14,8 @@ const SubMenu = Menu.SubMenu;
 class MainIndex extends Component {
   constructor(props, context) {
     super(props, context);
-
+    console.log(this.props);
+    
     this.navOpenChange = this.navOpenChange.bind(this)
   }
   state = {
@@ -120,53 +121,36 @@ class MainIndex extends Component {
         </Menu.Item>
       </Menu>
     );
-    return (
-      <div className="MainBox">
+    return <div className="MainBox">
         <Layout>
           <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
             <div className="logo" />
-            <Menu
-              theme="dark"
-              mode="inline"
-              selectedKeys={this.state.curSelectKey}
-              openKeys={this.state.curOpenNav}
-              defaultSelectedKeys={this.state.curSelectKey}
-              defaultOpenKeys={this.state.curOpenNav}
-              onOpenChange={this.navOpenChange}
-            >
+            <Menu theme="dark" mode="inline" selectedKeys={this.state.curSelectKey} openKeys={this.state.curOpenNav} defaultSelectedKeys={this.state.curSelectKey} defaultOpenKeys={this.state.curOpenNav} onOpenChange={this.navOpenChange}>
               {this.getMenu()}
             </Menu>
           </Sider>
           <Layout className="rightCont">
             <Header style={{ background: "#fff", padding: 0 }}>
-              <Icon
-                className="trigger"
-                type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-                onClick={this.toggle}
-              />
+              <Icon className="trigger" type={this.state.collapsed ? "menu-unfold" : "menu-fold"} onClick={this.toggle} />
               <Dropdown overlay={menu}>
                 <a className="ant-dropdown-link exitBtn">
                   {this.props.userName} <Icon type="down" />
                 </a>
               </Dropdown>
             </Header>
-            <Content
-              style={{ margin: "24px", background: "#f0f2f5", minHeight: 280 }}
-            >
+            <Content style={{ margin: "24px", background: "#f0f2f5", minHeight: 280 }}>
               <BreadItem />
               {this.props.children || <MainCont />}
             </Content>
           </Layout>
         </Layout>
-      </div>
-    );
+
+      </div>;
   }
 }
 
 const mapStateToProps = state => ({
-  userName: state.userName || localStorage.getItem("userName"),
-  // selectKey: state.selectMenu.selectKey ? Array.from(state.selectMenu.selectKey) : ["0"],
-  // openMenu: state.selectMenu.openMenu
+  userName: state.userName || localStorage.getItem("userName")
 });
 
 export default connect(mapStateToProps)(MainIndex);

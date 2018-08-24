@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'rc-color-picker/assets/index.css';
 import ColorPicker from 'rc-color-picker';
-
 class themeColor extends Component {
     changeHandler(colors) {
         console.log(colors);

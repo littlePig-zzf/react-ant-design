@@ -42,40 +42,32 @@ class manage extends Component {
 				this.refs.carEchart.initEchart()
 			}
 		}
-		return (
-			<div>
-				<div className="main-header">
-					<Row gutter={16}>
-						{
-							this.state.cardData.map((item,index)=>{
-								return (
-									<Col className="gutter-row" span={6} key={index}>
-										<Card bordered={false} hoverable className={item.className}>
-											<Icon type={item.icon} />
-											<span className="cardTxt">
-												{item.txt}
-											</span>
-										</Card>
-									</Col>
-								)
-							})
-						}
-					</Row>
-				</div>
-				<div className="main-cont">
-					<Row gutter = {24}>
-						<Col span = {12}>
-							<TabFrame title = "司机排名统计" searchEchart={this.searchEchart}/>
-							<BarEchart ref="driverEchart"/>
-						</Col>
-						<Col span = {12}>
-							<TabFrame title = "车辆信息排名" searchEchart={this.searchEchart}/>
-							<BarEchart ref="carEchart" yAxisData = {this.state.carSellerData} xAxisData = {this.state.carData} echartBg = {this.state.echartBg}/>
-						</Col>
-					</Row>
-				</div>
-			</div>
-		);
+		return <div>
+        <div className="main-header">
+          <Row gutter={16}>
+            {this.state.cardData.map((item, index) => {
+              return <Col className="gutter-row" span={6} key={index}>
+                  <Card bordered={false} hoverable className={item.className}>
+                    <Icon type={item.icon} />
+                    <span className="cardTxt">{item.txt}</span>
+                  </Card>
+                </Col>;
+            })}
+          </Row>
+        </div>
+        <div className="main-cont">
+          <Row gutter={24}>
+            <Col span={12}>
+              <TabFrame title="司机排名统计" searchEchart={this.searchEchart} />
+              <BarEchart ref="driverEchart" />
+            </Col>
+            <Col span={12}>
+              <TabFrame title="车辆信息排名" searchEchart={this.searchEchart} />
+              <BarEchart ref="carEchart" yAxisData={this.state.carSellerData} xAxisData={this.state.carData} echartBg={this.state.echartBg} />
+            </Col>
+          </Row>
+        </div>
+      </div>;
 	}
 }
 

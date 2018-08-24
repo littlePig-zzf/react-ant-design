@@ -18,11 +18,26 @@ export const getNavData = [
     children: [
       {
         name: '使用ant组件',
-        path: home+'formIndex/Form'
+        path: home+'formIndex/form'
       },
       {
         name: '不使用组件',
-        path: home+'formIndex/RowForm'
+        path: home+'formIndex/rowForm'
+      }
+    ]
+  },
+  {
+    name: '管理列表',
+    path: home + 'manageIndex',
+    icon: 'file-text',
+    children: [
+      {
+        name: '账户列表',
+        path: home + 'manageIndex/account'
+      }, 
+      {
+        name: '权限列表',
+        path: home + 'manageIndex/permit'
       }
     ]
   },

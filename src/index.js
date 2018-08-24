@@ -15,7 +15,6 @@ import registerServiceWorker from './registerServiceWorker';
 import Home from './view/main/index';
 import MainIndex from './view/main/mainCont';
 import CompanyIndex from './view/company/index';
-import FormIndex from './view/form/index';
 import Form from './view/form/form';
 import RowForm from './view/form/rowForm';
 import EditorIndex from './view/editor/index'
@@ -24,6 +23,9 @@ import canvas from './view/canvas/index'
 import svg from './view/svg/index'
 
 import errorPage from './view/errorPage/index'; //找不到路由
+
+import Account from './view/manage/account'
+import Permit from './view/manage/permit'
 
 const home = '/home/'
 
@@ -37,17 +39,28 @@ const routes =
 				<Switch>
 					<Route path="/home" exact component={MainIndex} />
 					<Route path={home + "companyIndex"} component={CompanyIndex} />
-					<Route path={home + "editorIndex"} component={EditorIndex}></Route>
-					<Route path={home + "themeColor"} component={themeColor}></Route>
-					<Route path={home + "canvas"} component={canvas}></Route>
-					<Route path={home + "svg"} component={svg}></Route>
-					<FormIndex>
-						<Switch>
-							<Redirect from={home + "formIndex"} to={home + "formIndex/Form"} exact />
-							<Route path={home + "formIndex/Form"} component={Form} />
-							<Route path={home + "formIndex/RowForm"} component={RowForm} />
-						</Switch>
-					</FormIndex>
+					<Route path={home + "editorIndex"} component={EditorIndex} />
+					<Route path={home + "themeColor"} component={themeColor} />
+					<Route path={home + "canvas"} component={canvas} />
+					<Route path={home + "svg"} component={svg} />
+					<Route path={home + "manageIndex"} render={(route) => {  //使用render来实现嵌套路由的写法
+						return (
+							<Switch>
+							   <Redirect from={route.match.url} to={`${route.match.url}/account`} exact/>
+						       <Route path={`${route.match.url}/account`} component={Account} />
+						       <Route path={`${route.match.url}/Permit`} component={Permit} />
+							</Switch>
+						)
+					}}/>
+					<Route path={home + "formIndex"} render={(route) => {
+						return (
+							<Switch>
+							    <Redirect from={route.match.url} to={`${route.match.url}/form`} exact/>
+								<Route path={`${route.match.url}/form`} component={Form} />
+								<Route path={`${route.match.url}/rowForm`} component={RowForm} />
+							</Switch>
+						)
+					}}/>
 				</Switch>
 			</Home>
  			<Route path="*" component={errorPage}/>
