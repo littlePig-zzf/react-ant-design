@@ -62,7 +62,7 @@ class Company extends Component {
 				return (
 					<Popconfirm title="Are you sure delete this task?" onConfirm={ () => this.delFun(record.key) } okText="Yes" cancelText="No">
 						<a>Delete</a>
-				</Popconfirm>
+					</Popconfirm>
 				)
 			}
 		}];
@@ -72,12 +72,11 @@ class Company extends Component {
 				console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
 			}
 		};
-
 		
 		return (
 			<div className="container">
-					<h2 className="title">公司列表</h2>
-					<Table {...this.state} rowSelection={rowSelection} columns={columns} dataSource={this.state.data} onChange={this.handleChange}/>
+				<h2 className="title">公司列表</h2>
+				<Table {...this.state} rowSelection={rowSelection} columns={columns} dataSource={this.state.data} onChange={this.handleChange}/>
 			</div>
 		);
 	}

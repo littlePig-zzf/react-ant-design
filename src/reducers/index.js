@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux'
 
 const token = (state = '', action) => {
-    console.log();
-    
     switch (action.type) {
         case 'SET_TOKEN':
             localStorage.setItem('token', action.token)
