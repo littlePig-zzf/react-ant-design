@@ -144,7 +144,6 @@ class MainIndex extends Component {
             </Content>
           </Layout>
         </Layout>
-
       </div>;
   }
 }

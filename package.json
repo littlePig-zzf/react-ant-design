@@ -15,10 +15,12 @@
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.1",
     "redux": "^4.0.0",
+    "source-map-explorer": "^1.6.0",
     "wangeditor": ">=3.0.0",
     "xss": "^1.0.3"
   },
   "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
@@ -29,6 +31,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "lodash": "^4.17.10",
     "mockjs": "^1.0.1-beta3",
     "react-router": "^4.3.1"
   }

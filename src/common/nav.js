@@ -60,5 +60,10 @@ export const getNavData = [
     name: 'svg动画',
     path: home+'svg',
     icon: 'share-alt'
+  },
+  {
+    name: '日程表',
+    path: home + 'agenda',
+    icon: 'calendar'
   }
 ]

@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
+import { LocaleProvider } from 'antd';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
+import 'moment/locale/zh-cn';
 import './App.css';
 import './common/global.js'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        {this.props.children}
-      </div>
+      <LocaleProvider locale={zhCN}>
+        <div className="App">
+          {this.props.children}
+        </div>
+      </LocaleProvider>
     );
   }
 }

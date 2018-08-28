@@ -43,7 +43,6 @@ class Login extends Component {
 	
   render() {
 		const { getFieldDecorator } = this.props.form;
-		
     return (
 	      <div className="login-box">
 	      	<Form onSubmit={this.handleSubmit} className="login-form">

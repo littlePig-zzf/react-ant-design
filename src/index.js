@@ -18,9 +18,10 @@ import CompanyIndex from './view/company/index';
 import Form from './view/form/form';
 import RowForm from './view/form/rowForm';
 import EditorIndex from './view/editor/index'
-import themeColor from './view/themeColor/index'
-import canvas from './view/canvas/index'
-import svg from './view/svg/index'
+import ThemeColor from './view/themeColor/index'
+import Canvas from './view/canvas/index'
+import Svg from './view/svg/index'
+import Agenda from './view/agenda/index'
 
 import errorPage from './view/errorPage/index'; //找不到路由
 
@@ -40,9 +41,10 @@ const routes =
 					<Route path="/home" exact component={MainIndex} />
 					<Route path={home + "companyIndex"} component={CompanyIndex} />
 					<Route path={home + "editorIndex"} component={EditorIndex} />
-					<Route path={home + "themeColor"} component={themeColor} />
-					<Route path={home + "canvas"} component={canvas} />
-					<Route path={home + "svg"} component={svg} />
+					<Route path={home + "themeColor"} component={ThemeColor} />
+					<Route path={home + "canvas"} component={Canvas} />
+					<Route path={home + "svg"} component={Svg} />
+					<Route path={home + "agenda"} component={Agenda} />
 					<Route path={home + "manageIndex"} render={(route) => {  //使用render来实现嵌套路由的写法
 						return (
 							<Switch>
