@@ -11,8 +11,6 @@ class agenda extends Component {
   state = {
     schedule: [],
     filterSchedule: [],
-    mode: ["month", "month"],
-    rangeDate: [],
     showModal: false,
     newDate: "",
     newDes: ""
@@ -125,24 +123,26 @@ class agenda extends Component {
         <label>时间筛选：</label>
         <RangePicker placeholder={["开始日期", "结束日期"]} format="YYYY-MM-DD" onChange={this.handlePanelChange} />
         <div className="progressCont">
-          {this.state.schedule.map((item, index) => {
-            return <div key={index + "s"} style={{ display: "inline-block", verticalAlign: "top" }}>
-                <h4>{item.year}</h4>
-                <Steps current={item.currentStep} progressDot direction="vertical">
-                  {this.state.schedule[index].children.map(
-                    (cItem, cIndex) => {
-                      return (
-                        <Step
-                          title={cItem.date}
-                          description={cItem.des}
-                          key={cIndex}
-                        />
-                      );
-                    }
-                  )}
-                </Steps>
-              </div>;
-          })}
+          {this.state.schedule.length === 0 ? <p style={{ color: "#999" }}>
+              赶紧修饰你的日程表吧！yeah！
+            </p> : this.state.schedule.map((item, index) => {
+              return <div key={index + "s"} style={{ display: "inline-block", verticalAlign: "top" }}>
+                  <h4>{item.year}</h4>
+                  <Steps current={item.currentStep} progressDot direction="vertical">
+                    {this.state.schedule[index].children.map(
+                      (cItem, cIndex) => {
+                        return (
+                          <Step
+                            title={cItem.date}
+                            description={cItem.des}
+                            key={cIndex}
+                          />
+                        );
+                      }
+                    )}
+                  </Steps>
+                </div>;
+            })}
           <Button style={{ marginTop: 10 }} type="primary" icon="plus" size="small" onClick={() => {
               this.setState({ showModal: true });
             }}>
@@ -160,8 +160,7 @@ class agenda extends Component {
           <div style={{ marginTop: 20 }}>
             日程：
             <TextArea ref="textarea" rows={4} style={{ width: "80%", verticalAlign: "top" }} onChange={e => {
-                const { value } = e.target;
-                this.setState({ newDes: value });
+              this.setState({ newDes: e.target.value });
               }} />
           </div>
         </Modal>
