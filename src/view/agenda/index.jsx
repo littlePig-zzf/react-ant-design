@@ -25,15 +25,21 @@ class agenda extends Component {
   };
 
   compareDate(date, schedule) {
-    const newYear = String(new Date(date).getFullYear());
+    const { today: newDay, year: newYear} = this.dealDate(date);
     const newItem = { date: date, des: this.state.newDes, currentStep: null };
     const equal = findIndex(schedule, { year: newYear });
     if (equal < 0) {
       schedule.push({ year: newYear, children: [newItem] });
     } else {
-      schedule[equal].children.push(newItem);
+      schedule[equal].children.forEach(item => {
+        if (item.date === String(newDay)) {
+          item.des += `、${this.state.newDes}`;
+        } else {
+          schedule[equal].children.push(newItem);
+        }
+        return;
+      });
     }
-
     schedule.sort((a, b) => {
       return a.year > b.year ? 1 : -1;
     });
