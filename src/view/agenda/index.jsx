@@ -10,17 +10,18 @@ const { TextArea } = Input;
 class agenda extends Component {
   state = {
     schedule: [
-      { year: '2018',
+      {
+        year: "2018",
         children: [
           { date: "2018-05-10", des: "和朋友出去聚会" },
           { date: "2018-06-20", des: "吃一顿大餐" }
-        ]
+        ],
+        currentStep: null
       }
     ],
     mode: ["month", "month"],
     rangeDate: [],
     showModal: false,
-    currentStep: 0,
     newDate: "",
     newDes: ""
   };
@@ -37,21 +38,20 @@ class agenda extends Component {
     const equal = findIndex(schedule, { year: newYear });
     if (equal < 0) {
       schedule.push({ year: newYear, children: [newItem] });
-    }else {
+    } else {
       schedule[equal].children.push(newItem);
     }
-    
+
     schedule.sort((a, b) => {
       return a.year > b.year ? 1 : -1;
-    })
-    schedule.forEach((item)=>{
-      if (item.year !== newYear) return
+    });
+    schedule.forEach(item => {
+      if (item.year !== newYear) return;
       item.children.sort((a, b) => {
         return a.date > b.date ? 1 : -1;
       });
-    })
-    console.log("schedule", schedule);
-  };
+    });
+  }
 
   setCurrentStep() {
     const date = new Date();
@@ -63,16 +63,23 @@ class agenda extends Component {
     const today = `${year}-${month}-${day}`;
 
     const dateArr = JSON.parse(JSON.stringify(this.state.schedule));
+    const curElement = this.state.schedule;
 
     this.compareDate(today, dateArr);
-    dateArr.forEach((item)=>{
+    dateArr.forEach((item, index) => {
       const cur = findIndex(item.children, { date: today });
-      if (cur > 0) {
-        this.setState({ currentStep: cur - 1 });
-        return
+      if (cur > 0 && item.year === String(year)) {
+        curElement[index].currentStep = cur - 1;
+      } else if (item.year > String(year)) {
+        curElement[index].currentStep = null;
+      } else {
+        const { length } = curElement[index].children;
+        curElement[index].currentStep = length;
       }
-    })
-  };
+      this.setState({ schedule: curElement });
+      return;
+    });
+  }
 
   handleOk = e => {
     this.compareDate(this.state.newDate, this.state.schedule);
@@ -102,15 +109,22 @@ class agenda extends Component {
 
   render() {
     const { rangeDate, mode } = this.state;
-    return <div className="container agendaBox">
+    return (
+      <div className="container agendaBox">
         <h3>记录日程</h3>
         <label>时间筛选：</label>
-        <RangePicker placeholder={["Start month", "End month"]} format="YYYY-MM" value={rangeDate} mode={mode} onPanelChange={this.handlePanelChange} />
+        <RangePicker
+          placeholder={["Start month", "End month"]}
+          format="YYYY-MM"
+          value={rangeDate}
+          mode={mode}
+          onPanelChange={this.handlePanelChange}
+        />
         <div className="progressCont">
           {this.state.schedule.map((item, index) => {
             return <div key={index + "s"} style={{ display: "inline-block", verticalAlign: "top" }}>
                 <h4>{item.year}</h4>
-                <Steps current={this.state.currentStep} progressDot direction="vertical">
+                <Steps current={item.currentStep} progressDot direction="vertical">
                   {this.state.schedule[index].children.map(
                     (cItem, cIndex) => {
                       return (
@@ -125,29 +139,49 @@ class agenda extends Component {
                 </Steps>
               </div>;
           })}
-          <Button style={{ marginTop: 10 }} type="primary" icon="plus" size="small" onClick={() => {
+          <Button
+            style={{ marginTop: 10 }}
+            type="primary"
+            icon="plus"
+            size="small"
+            onClick={() => {
               this.setState({ showModal: true });
-            }}>
+            }}
+          >
             增加日程
           </Button>
         </div>
 
-        <Modal title="增加日程" destroyOnClose visible={this.state.showModal} onOk={this.handleOk} onCancel={this.handleCancel}>
+        <Modal
+          title="增加日程"
+          destroyOnClose
+          visible={this.state.showModal}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
           <div>
             时间：
-            <DatePicker onChange={(date, dateString) => {
+            <DatePicker
+              onChange={(date, dateString) => {
                 this.setState({ newDate: dateString });
-              }} />
+              }}
+            />
           </div>
           <div style={{ marginTop: 20 }}>
             日程：
-            <TextArea ref="textarea" rows={4} style={{ width: "80%", verticalAlign: "top" }} onChange={e => {
+            <TextArea
+              ref="textarea"
+              rows={4}
+              style={{ width: "80%", verticalAlign: "top" }}
+              onChange={e => {
                 const { value } = e.target;
                 this.setState({ newDes: value });
-              }} />
+              }}
+            />
           </div>
         </Modal>
-      </div>;
+      </div>
+    );
   }
 }
 
