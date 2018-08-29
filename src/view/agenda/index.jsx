@@ -34,32 +34,23 @@ class agenda extends Component {
   compareDate(date, schedule) {
     const newYear = String(new Date(date).getFullYear());
     const newItem = { date: date, des: this.state.newDes };
-    for(let i = 0; i<schedule.length; i++) {
-      if (newYear === schedule[i].year) {
-        console.log("1");
-        schedule[i].children.push(newItem);
-        return false;
-      } else if (newYear > schedule[i].year) {
-        console.log("2");
-        schedule.push({ year: newYear, children: [newItem] });
-        return false
-      } else if (newYear < schedule[i].year) {
-        schedule.splice(0, 0, newItem);
-        return false;
-      }
+    const equal = findIndex(schedule, { year: newYear });
+    if (equal < 0) {
+      schedule.push({ year: newYear, children: [newItem] });
+    }else {
+      schedule[equal].children.push(newItem);
     }
-    // schedule.forEach((item)=>{
-      
-    // })
     
+    schedule.sort((a, b) => {
+      return a.year > b.year ? 1 : -1;
+    })
     schedule.forEach((item)=>{
       if (item.year !== newYear) return
       item.children.sort((a, b) => {
         return a.date > b.date ? 1 : -1;
       });
     })
-
-    console.log(schedule);
+    console.log("schedule", schedule);
   };
 
   setCurrentStep() {
@@ -92,8 +83,6 @@ class agenda extends Component {
   };
 
   handleCancel = e => {
-    console.log('-=-=-');
-    
     this.setState({
       showModal: false,
       newDate: "",
@@ -113,80 +102,52 @@ class agenda extends Component {
 
   render() {
     const { rangeDate, mode } = this.state;
-    return (
-      <div className="container agendaBox">
+    return <div className="container agendaBox">
         <h3>记录日程</h3>
         <label>时间筛选：</label>
-        <RangePicker
-          placeholder={["Start month", "End month"]}
-          format="YYYY-MM"
-          value={rangeDate}
-          mode={mode}
-          onPanelChange={this.handlePanelChange}
-        />
+        <RangePicker placeholder={["Start month", "End month"]} format="YYYY-MM" value={rangeDate} mode={mode} onPanelChange={this.handlePanelChange} />
         <div className="progressCont">
-          {
-            this.state.schedule.map((item,index)=>{
-              return (
-                <div key={index+'s'} style={{ display: 'inline-block', verticalAlign: 'top' }}>
-                  <h4>{item.year}</h4>
-                  <Steps
-                    current={this.state.currentStep}
-                    progressDot
-                    direction="vertical">
-                    {this.state.schedule[index].children.map((cItem, cIndex) => {
-                      return <Step title={cItem.date} description={cItem.des} key={cIndex} />;
-                    })}
-                  </Steps>
-                </div>
-              )
-            })
-          }
-          <Button
-            style={{ marginTop: 10 }}
-            type="primary"
-            icon="plus"
-            size="small"
-            onClick={() => {
-              console.log('[][][][');
-              
-              this.setState({
-                showModal: true,
-                newDate: "",
-                newDes: "" });
-            }}
-          >
+          {this.state.schedule.map((item, index) => {
+            return <div key={index + "s"} style={{ display: "inline-block", verticalAlign: "top" }}>
+                <h4>{item.year}</h4>
+                <Steps current={this.state.currentStep} progressDot direction="vertical">
+                  {this.state.schedule[index].children.map(
+                    (cItem, cIndex) => {
+                      return (
+                        <Step
+                          title={cItem.date}
+                          description={cItem.des}
+                          key={cIndex}
+                        />
+                      );
+                    }
+                  )}
+                </Steps>
+              </div>;
+          })}
+          <Button style={{ marginTop: 10 }} type="primary" icon="plus" size="small" onClick={() => {
+              this.setState({ showModal: true });
+            }}>
             增加日程
           </Button>
         </div>
 
-        <Modal
-          title="增加日程"
-          visible={this.state.showModal}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}>
+        <Modal title="增加日程" destroyOnClose visible={this.state.showModal} onOk={this.handleOk} onCancel={this.handleCancel}>
           <div>
             时间：
-            <DatePicker
-              onChange={(date, dateString) => {
+            <DatePicker onChange={(date, dateString) => {
                 this.setState({ newDate: dateString });
-              }}
-            />
+              }} />
           </div>
           <div style={{ marginTop: 20 }}>
             日程：
-            <TextArea
-              rows={4}
-              style={{ width: "80%", verticalAlign: "top" }}
-              onChange={e => {
+            <TextArea ref="textarea" rows={4} style={{ width: "80%", verticalAlign: "top" }} onChange={e => {
                 const { value } = e.target;
                 this.setState({ newDes: value });
-              }}
-            />
+              }} />
           </div>
         </Modal>
-      </div>
-    );
+      </div>;
   }
 }
 
