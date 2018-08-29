@@ -9,16 +9,8 @@ const { TextArea } = Input;
 
 class agenda extends Component {
   state = {
-    schedule: [
-      {
-        year: "2018",
-        children: [
-          { date: "2018-05-10", des: "和朋友出去聚会" },
-          { date: "2018-06-20", des: "吃一顿大餐" }
-        ],
-        currentStep: null
-      }
-    ],
+    schedule: [],
+    filterSchedule: [],
     mode: ["month", "month"],
     rangeDate: [],
     showModal: false,
@@ -34,7 +26,7 @@ class agenda extends Component {
 
   compareDate(date, schedule) {
     const newYear = String(new Date(date).getFullYear());
-    const newItem = { date: date, des: this.state.newDes };
+    const newItem = { date: date, des: this.state.newDes, currentStep: null };
     const equal = findIndex(schedule, { year: newYear });
     if (equal < 0) {
       schedule.push({ year: newYear, children: [newItem] });
@@ -53,14 +45,19 @@ class agenda extends Component {
     });
   }
 
-  setCurrentStep() {
-    const date = new Date();
+  dealDate(time) {
+    const date = time ? new Date(time) : new Date();
     const year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
     month = month < 10 ? "0" + month : month;
     day = day < 10 ? "0" + day : day;
     const today = `${year}-${month}-${day}`;
+    return {year: String(year), today: today}
+  }
+
+  setCurrentStep() {
+    const { year, today } = this.dealDate();
 
     const dateArr = JSON.parse(JSON.stringify(this.state.schedule));
     const curElement = this.state.schedule;
@@ -68,9 +65,9 @@ class agenda extends Component {
     this.compareDate(today, dateArr);
     dateArr.forEach((item, index) => {
       const cur = findIndex(item.children, { date: today });
-      if (cur > 0 && item.year === String(year)) {
+      if (cur > 0 && item.year === year) {
         curElement[index].currentStep = cur - 1;
-      } else if (item.year > String(year)) {
+      } else if (item.year > year) {
         curElement[index].currentStep = null;
       } else {
         const { length } = curElement[index].children;
@@ -97,29 +94,30 @@ class agenda extends Component {
     });
   };
 
-  handlePanelChange = (value, mode) => {
-    this.setState({
-      rangeDate: value,
-      mode: [
-        mode[0] === "date" ? "month" : mode[0],
-        mode[1] === "date" ? "month" : mode[1]
-      ]
-    });
+  handlePanelChange = (value) => {
+    if (value.length === 0) {
+      this.setState({ schedule: this.state.rawSchedule });
+      return
+    }
+    const { year: startYear, today: startDate } = this.dealDate(value[0]);
+    const { year: endYear, today: endDate } = this.dealDate(value[1]);
+    
+    let res = JSON.parse(JSON.stringify(this.state.schedule))
+    res = res.filter(item => item.year >= startYear && item.year <= endYear );
+    res.forEach(item => {
+      item.children = item.children.filter(cItem => {
+        return cItem.date >= startDate && cItem.date <= endDate
+      });
+    })
+    
+    this.setState({ rawSchedule: JSON.parse(JSON.stringify(this.state.schedule)), schedule: res });
   };
 
   render() {
-    const { rangeDate, mode } = this.state;
-    return (
-      <div className="container agendaBox">
+    return <div className="container agendaBox">
         <h3>记录日程</h3>
         <label>时间筛选：</label>
-        <RangePicker
-          placeholder={["Start month", "End month"]}
-          format="YYYY-MM"
-          value={rangeDate}
-          mode={mode}
-          onPanelChange={this.handlePanelChange}
-        />
+        <RangePicker placeholder={["开始日期", "结束日期"]} format="YYYY-MM-DD" onChange={this.handlePanelChange} />
         <div className="progressCont">
           {this.state.schedule.map((item, index) => {
             return <div key={index + "s"} style={{ display: "inline-block", verticalAlign: "top" }}>
@@ -139,49 +137,29 @@ class agenda extends Component {
                 </Steps>
               </div>;
           })}
-          <Button
-            style={{ marginTop: 10 }}
-            type="primary"
-            icon="plus"
-            size="small"
-            onClick={() => {
+          <Button style={{ marginTop: 10 }} type="primary" icon="plus" size="small" onClick={() => {
               this.setState({ showModal: true });
-            }}
-          >
+            }}>
             增加日程
           </Button>
         </div>
 
-        <Modal
-          title="增加日程"
-          destroyOnClose
-          visible={this.state.showModal}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
+        <Modal title="增加日程" destroyOnClose visible={this.state.showModal} onOk={this.handleOk} onCancel={this.handleCancel}>
           <div>
             时间：
-            <DatePicker
-              onChange={(date, dateString) => {
+            <DatePicker onChange={(date, dateString) => {
                 this.setState({ newDate: dateString });
-              }}
-            />
+              }} />
           </div>
           <div style={{ marginTop: 20 }}>
             日程：
-            <TextArea
-              ref="textarea"
-              rows={4}
-              style={{ width: "80%", verticalAlign: "top" }}
-              onChange={e => {
+            <TextArea ref="textarea" rows={4} style={{ width: "80%", verticalAlign: "top" }} onChange={e => {
                 const { value } = e.target;
                 this.setState({ newDes: value });
-              }}
-            />
+              }} />
           </div>
         </Modal>
-      </div>
-    );
+      </div>;
   }
 }
 
