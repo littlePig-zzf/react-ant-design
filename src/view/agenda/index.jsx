@@ -124,7 +124,7 @@ class agenda extends Component {
         <RangePicker placeholder={["开始日期", "结束日期"]} format="YYYY-MM-DD" onChange={this.handlePanelChange} />
         <div className="progressCont">
           {this.state.schedule.length === 0 ? <p style={{ color: "#999" }}>
-              赶紧修饰你的日程表吧！yeah！
+            赶紧修饰你的日程表吧！yeah！
             </p> : this.state.schedule.map((item, index) => {
               return <div key={index + "s"} style={{ display: "inline-block", verticalAlign: "top" }}>
                   <h4>{item.year}</h4>

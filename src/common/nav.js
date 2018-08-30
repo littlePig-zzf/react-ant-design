@@ -46,11 +46,11 @@ export const getNavData = [
     path: home+'editorIndex',
     icon: 'edit'
   },
-  {
-    name: '自定义主题色',
-    path: home+'themeColor',
-    icon: 'appstore-o'
-  },
+  // {
+  //   name: '自定义主题色',
+  //   path: home+'themeColor',
+  //   icon: 'appstore-o'
+  // },
   {
     name: '画板',
     path: home+'canvas',

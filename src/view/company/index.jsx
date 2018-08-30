@@ -36,9 +36,7 @@ class Company extends Component {
 	componentWillMount() {
 		this.getData()
 	}
-	componentDidMount() {
-
-	}	
+		
 	render() {
 		let { sortedInfo } = this.state;
 		sortedInfo = sortedInfo || {};
