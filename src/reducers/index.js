@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-const token = (state = '', action) => {
+const Token = (state = '', action) => {
     switch (action.type) {
         case 'SET_TOKEN':
             localStorage.setItem('token', action.token)
@@ -10,7 +10,7 @@ const token = (state = '', action) => {
     }
 }
 
-const userName = (state = '', action) => {
+const UserName = (state = '', action) => {
     switch (action.type) {
         case 'SET_USERNAME':
             localStorage.setItem('userName', action.userName)
@@ -21,6 +21,6 @@ const userName = (state = '', action) => {
 }
 
 export default combineReducers({
-    token,
-    userName
+    Token,
+    UserName
 })

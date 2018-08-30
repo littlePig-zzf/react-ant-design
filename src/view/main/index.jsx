@@ -149,7 +149,7 @@ class MainIndex extends Component {
 }
 
 const mapStateToProps = state => ({
-  userName: state.userName || localStorage.getItem("userName")
+  userName: state.UserName || localStorage.getItem("userName")
 });
 
 export default connect(mapStateToProps)(MainIndex);

@@ -128,18 +128,19 @@ class agenda extends Component {
             </p> : this.state.schedule.map((item, index) => {
               return <div key={index + "s"} style={{ display: "inline-block", verticalAlign: "top" }}>
                   <h4>{item.year}</h4>
+                  {this.state.schedule[index].children.length > 0 ? '' : <p style={{marginRight: 20}}>暂无数据~</p>}
                   <Steps current={item.currentStep} progressDot direction="vertical">
                     {this.state.schedule[index].children.map(
-                      (cItem, cIndex) => {
-                        return (
-                          <Step
-                            title={cItem.date}
-                            description={cItem.des}
-                            key={cIndex}
-                          />
-                        );
-                      }
-                    )}
+                        (cItem, cIndex) => {
+                          return (
+                            <Step
+                              title={cItem.date}
+                              description={cItem.des}
+                              key={cIndex}
+                            />
+                          );
+                        }
+                      )}
                   </Steps>
                 </div>;
             })}
