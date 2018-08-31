@@ -11,8 +11,7 @@ class RegistrationForm extends Component {
   state = {
     currentBrand: []
   };
-  validateWord = (rule, value, callback) => {
-    const { field } = rule;
+  validateWord = ({field}, value, callback) => {
     const num = field === "productName" ? 60 : 300;
     if (value && value.length > num) {
       callback(`请输入${num}字以内的字数，当前字数为${value.length}`);

@@ -60,12 +60,12 @@ class Company extends Component {
         const html = xss(this.state.disposeCont, {
             onIgnoreTag: (tag, html, options) => {
                 if (tag === "blockquote") {
-                    return tag + '"' + xss.escapeHtml(html) + '"'
+                    return `${tag}"${xss.escapeHtml(html)}"`
                 }
             },
             onIgnoreTagAttr: (tag, name, value, isWhiteAttr) => {
                 if (name === 'style') {
-                    return name + '="' + xss.escapeAttrValue(value) + '"'
+                    return `${name}="${xss.escapeAttrValue(value)}"`;
                 }
             }
         })
@@ -95,7 +95,7 @@ class Company extends Component {
                 <div className = "container">
                     <div className="editorHead">
                         <h4>wangEditor编辑器</h4>
-                        <Button className="previewBtn" type="primary" disabled={this.state.words > 0 ? '': 'false'} onClick={this.previewContent}>预览</Button>
+                        <Button className="previewBtn" type="primary" disabled={this.state.words ? '': 'false'} onClick={this.previewContent}>预览</Button>
                     </div>
                     <div ref="editorElem" className="editorCont" style={{textAlign: 'left', zIndex: 1}}></div>
                     <p className="words">{this.state.words}/{this.state.maxWords}</p>

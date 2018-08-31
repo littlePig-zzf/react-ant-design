@@ -16,10 +16,10 @@ class Company extends Component {
 	    });
 	};
 	delFun = (key) => {
-		const data = this.state.data
-		delete data[key]
+		const { Data } = this.state
+		delete Data[key]
 		this.setState({
-			data: data
+			data: Data
 		})
 	};
 	getData = () => {

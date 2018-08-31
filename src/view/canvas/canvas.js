@@ -36,7 +36,7 @@ class draw {
 
       // TODO: 如果需要改变笔触颜色，之前不被影响，则需要加入这句，进行重新绘制
       this.pen.beginPath()
-      
+
       this.pen.moveTo(originX, originY)
       this.pen.strokeStyle = this.color.placeholder
       this.pen.lineWidth = this.lineWidth.placeholder

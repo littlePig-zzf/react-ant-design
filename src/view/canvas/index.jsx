@@ -6,7 +6,6 @@ import "./index.css"
 import draw from "./canvas.js"
 const ButtonGroup = Button.Group;
 
-let canvasFrame = ''
 class canvas extends Component {
   state = {
     canvasWidth: 1100,
@@ -27,7 +26,7 @@ class canvas extends Component {
     curSelect: "pen"
   };
   componentDidMount() {
-    canvasFrame = new draw();
+    const canvasFrame = new draw();
     canvasFrame.init();
   }
   changeLineWidth(value) {

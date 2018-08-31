@@ -14,9 +14,6 @@ const SubMenu = Menu.SubMenu;
 class MainIndex extends Component {
   constructor(props, context) {
     super(props, context);
-    console.log(this.props);
-    
-    this.navOpenChange = this.navOpenChange.bind(this)
   }
   state = {
     collapsed: false,
@@ -124,7 +121,7 @@ class MainIndex extends Component {
         <Layout>
           <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
             <div className="logo" />
-            <Menu theme="dark" mode="inline" selectedKeys={this.state.curSelectKey} openKeys={this.state.curOpenNav} defaultSelectedKeys={this.state.curSelectKey} defaultOpenKeys={this.state.curOpenNav} onOpenChange={this.navOpenChange}>
+            <Menu theme="dark" mode="inline" selectedKeys={this.state.curSelectKey} openKeys={this.state.curOpenNav} defaultSelectedKeys={this.state.curSelectKey} defaultOpenKeys={this.state.curOpenNav} onOpenChange={this.navOpenChange.bind(this)}>
               {this.getMenu()}
             </Menu>
           </Sider>

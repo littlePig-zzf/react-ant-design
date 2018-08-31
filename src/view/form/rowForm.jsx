@@ -10,9 +10,9 @@ class RegistrationForm extends Component {
     };
   }
 
-  handleChange = e => {
+  handleChange = ({target: {value}}) => {
     this.setState({
-      username: e.target.value
+      username: value
     })
   }
 
