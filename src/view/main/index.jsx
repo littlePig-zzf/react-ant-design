@@ -61,7 +61,6 @@ class MainIndex extends Component {
       } else {
         if (Object.is(item.path, path)) {
           this.setState({
-            //使用setState修改state数据之后，并不能在这里直接打印最新的state的值，因为修改了之后还会执行一遍willUpdate
             curSelectKey: [index.toString()],
             curOpenNav: []
           });

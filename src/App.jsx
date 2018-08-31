@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <LocaleProvider locale={zhCN}>
-        <div className="App" ref="app">
+        <div className="App">
           {this.props.children}
         </div>
       </LocaleProvider>

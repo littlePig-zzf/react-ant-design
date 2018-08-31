@@ -5,7 +5,6 @@ import ColorPicker from "rc-color-picker";
 import "./index.css"
 import draw from "./canvas.js"
 const ButtonGroup = Button.Group;
-// const Option = Select.Option;
 
 let canvasFrame = ''
 class canvas extends Component {

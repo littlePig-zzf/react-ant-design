@@ -54,8 +54,8 @@ class agenda extends Component {
     const year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
-    month = month < 10 ? "0" + month : month;
-    day = day < 10 ? "0" + day : day;
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
     const today = `${year}-${month}-${day}`;
     return {year: String(year), today: today}
   }
@@ -128,7 +128,7 @@ class agenda extends Component {
             </p> : this.state.schedule.map((item, index) => {
               return <div key={index + "s"} style={{ display: "inline-block", verticalAlign: "top" }}>
                   <h4>{item.year}</h4>
-                  {this.state.schedule[index].children.length > 0 ? '' : <p style={{marginRight: 20}}>暂无数据~</p>}
+                  {this.state.schedule[index].children.length ? '' : <p style={{marginRight: 20}}>暂无数据~</p>}
                   <Steps current={item.currentStep} progressDot direction="vertical">
                     {this.state.schedule[index].children.map(
                         (cItem, cIndex) => {
