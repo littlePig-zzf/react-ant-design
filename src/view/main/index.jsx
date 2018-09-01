@@ -12,9 +12,6 @@ const { Header, Content, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
 class MainIndex extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
   state = {
     collapsed: false,
     curSelectKey: [], //当前选择的菜单

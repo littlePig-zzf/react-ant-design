@@ -56,7 +56,7 @@ class RegistrationForm extends Component {
         }
       }
     };
-
+    
     return (
       <div className="formBox container">
         <Form onSubmit={this.handleSubmit}>
