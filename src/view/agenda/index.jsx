@@ -34,20 +34,20 @@ class agenda extends Component {
       for (let i = 0; i < length; i++) {
         if (item[i].date === String(newDay)) {
           item[i].des += `、${this.state.newDes}`;
-          this.sortDate(newYear);
+          this.sortDate(newYear, schedule);
           return;
         }
       }
       item.push(newItem);
-      this.sortDate(newYear);
+      this.sortDate(newYear, schedule);
     }
   }
 
-  sortDate(newYear) {
-    this.state.schedule.sort((a, b) => {
+  sortDate(newYear, schedule) {
+    schedule.sort((a, b) => {
       return a.year > b.year ? 1 : -1;
     });
-    this.state.schedule.forEach(item => {
+    schedule.forEach(item => {
       if (item.year !== newYear) return;
       item.children.sort((a, b) => {
         return a.date > b.date ? 1 : -1;
@@ -75,6 +75,7 @@ class agenda extends Component {
     this.compareDate(today, dateArr);
     dateArr.forEach((item, index) => {
       const cur = findIndex(item.children, { date: today });
+
       if (cur > 0 && item.year === year) {
         curElement[index].currentStep = cur - 1;
       } else if (item.year > year) {
