@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { findIndex } from 'lodash'
-import { Steps, Button, DatePicker, Modal, Input } from "antd";
+import { Steps, Button, DatePicker, Modal, Input, Icon } from "antd";
 import "./index.css";
 
 const Step = Steps.Step;
@@ -127,6 +127,13 @@ class agenda extends Component {
     });
   };
 
+  delAgenda = (index, cIndex) => {
+    this.state.schedule[index].children.splice(cIndex, 1)
+    this.setState({
+      schedule: this.state.schedule
+    })
+  }
+
   render() {
     return (
       <div className="container agendaBox">
@@ -163,7 +170,7 @@ class agenda extends Component {
                         return (
                           <Step
                             title={cItem.date}
-                            description={cItem.des}
+                            description={<div>{cItem.des} &nbsp; <Icon type="close" theme="outlined" onClick={this.delAgenda.bind(this, index, cIndex)} style={{verticalAlign: 'middle', cursor: 'pointer', color: '#f00'}} /></div>}
                             key={cIndex}
                           />
                         );
