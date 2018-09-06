@@ -1,7 +1,5 @@
 import axios from 'axios'; 
-// import {SERVER_URL} from './api';
 import { message } from 'antd';
-// import { hashHistory } from 'react-router'
 
 axios.defaults.baseURL = ''; // 设置默认服务地址
 axios.defaults.timeout = 0;//不设置超时时长

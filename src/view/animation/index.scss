@@ -1,0 +1,115 @@
+.animation_item {
+    display: inline-block;
+    margin-right: 60px;
+    vertical-align: top;
+    h4 {
+        margin-bottom: 20px;
+    }
+}
+.svgContainer {
+    position: relative;
+    width: 300px;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    &:before {
+        content: attr(data-pct)'%';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -16px;
+        margin-top: -28px;
+        font-size: 18px;
+    }
+}
+@keyframes run {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+.bounceAnimation {
+    .square {
+        position: relative;
+        &:before {
+            content: "";
+            position: absolute;
+            top: 60px;
+            left: 50px;
+            width: 50px;
+            height: 50px;
+            border-radius: 2px;
+            // background: #c00;
+            transform: rotate(45deg);
+            z-index: 2;
+            animation: squareAnim .5s infinite;
+            
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            top: 128px;
+            left: 52px;
+            width: 44px;
+            height: 3px;
+            background: #eaeaea;
+            border-radius: 100%;
+            z-index: 1;
+            animation: boxShadow .5s infinite;
+        }
+        &.red {
+            &:before {
+                background: #c00;
+            }
+        }
+        &.blue {
+            margin-left: 100px;
+            &:before {
+                background: #00c;
+            }
+        }
+        &.green {
+            margin-left: 200px;
+            &:before {
+                background: #0ff;
+            }
+        }
+    }
+}
+@keyframes squareAnim {
+    0% {
+        top: 50px;
+        transform: rotate(90deg)
+    }
+    20% {
+        border-radius: 2px;
+    }
+    50% {
+        top: 80px;
+        border-bottom-right-radius: 25px;
+        transform: rotate(45deg)
+    }
+    80% {
+        border-radius: 2px;
+    }
+    100% {
+        transform: rotate(0deg);
+        top: 50px;
+    }
+}
+@keyframes boxShadow {
+    0%,100% {
+        left: 54px;
+        width: 40px;
+        background: #eaeaea;
+    }
+    50% {
+        top: 126px;
+        left: 50px;
+        width: 50px;
+        height: 7px;
+        background: #eee;
+    }
+}

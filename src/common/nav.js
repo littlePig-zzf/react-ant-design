@@ -57,8 +57,8 @@ export const getNavData = [
     icon: 'ant-design'
   },
   {
-    name: 'svg动画',
-    path: home+'svg',
+    name: '动画',
+    path: home+'animation',
     icon: 'share-alt'
   },
   {

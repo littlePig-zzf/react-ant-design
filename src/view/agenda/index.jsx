@@ -205,7 +205,6 @@ class agenda extends Component {
             时间：
             <DatePicker
               onChange={(date, dateString) => {
-                console.log("0");
                 this.setState({ newDate: dateString });
               }}
             />
@@ -216,8 +215,8 @@ class agenda extends Component {
               ref="textarea"
               rows={4}
               style={{ width: "80%", verticalAlign: "top" }}
-              onChange={e => {
-                this.setState({ newDes: e.target.value });
+              onChange={({target: {value}}) => {
+                this.setState({ newDes: value });
               }}
             />
           </div>

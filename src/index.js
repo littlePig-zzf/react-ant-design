@@ -20,7 +20,7 @@ import RowForm from './view/form/rowForm';
 import EditorIndex from './view/editor/index'
 import ThemeColor from './view/themeColor/index'
 import Canvas from './view/canvas/index'
-import Svg from './view/svg/index'
+import Animation from './view/animation/index'
 import Agenda from './view/agenda/index'
 
 import errorPage from './view/errorPage/index'; //找不到路由
@@ -43,7 +43,7 @@ const routes =
 					<Route path={home + "editorIndex"} component={EditorIndex} />
 					<Route path={home + "themeColor"} component={ThemeColor} />
 					<Route path={home + "canvas"} component={Canvas} />
-					<Route path={home + "svg"} component={Svg} />
+					<Route path={home + "animation"} component={Animation} />
 					<Route path={home + "agenda"} component={Agenda} />
 					<Route path={home + "manageIndex"} render={(route) => {  //使用render来实现嵌套路由的写法
 						return (
