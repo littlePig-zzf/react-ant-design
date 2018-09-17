@@ -38,7 +38,7 @@ class SvgFrame extends Component {
           </div>
         </div>
 
-      <div className="animation_item">
+        <div className="animation_item">
           <h4>弹跳动画</h4>
           <div className="bounceAnimation">
             <div className="square red"></div>

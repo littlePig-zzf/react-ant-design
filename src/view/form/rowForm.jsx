@@ -17,13 +17,13 @@ class RegistrationForm extends Component {
   }
 
   handleSubmit = e => {
+    e.preventDefault();
     if(this.state.username === '') {
       message.error('请填写下面输入框')
       ReactDOM.findDOMNode(this.refs.user).focus();
       return
     }
     message.success('账户名为： ' + this.state.username);
-    e.preventDefault();
   }
 
   render() {

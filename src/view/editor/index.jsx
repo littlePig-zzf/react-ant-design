@@ -41,22 +41,18 @@ class Company extends Component {
             }
         ]
         editor.customConfig.onchange = html => {
-
             this.setState({
               disposeCont: html,
               words: editor.txt.text().length
             });
 
-            console.log(html);
-            
             if (this.state.words > this.state.maxWords) {
-                message.warning(`请将字数控制在${this.state.maxWords}`)
+              message.warning(`请将字数控制在${this.state.maxWords}`)
             }
         }
         editor.create()
     }
     previewContent = (e) => {  //函数参数写多一个e，在调用方法时可不使用bind(this)的方法
-        // console.log(filterXSS(this.state.disposeCont));
         const html = xss(this.state.disposeCont, {
             onIgnoreTag: (tag, html, options) => {
                 if (tag === "blockquote") {
@@ -69,7 +65,6 @@ class Company extends Component {
                 }
             }
         })
-        console.log('back', html);
         
         this.setState({
             showModal: true,
@@ -95,7 +90,7 @@ class Company extends Component {
                 <div className = "container">
                     <div className="editorHead">
                         <h4>wangEditor编辑器</h4>
-                        <Button className="previewBtn" type="primary" disabled={this.state.words ? '': 'false'} onClick={this.previewContent}>预览</Button>
+                        <Button className="previewBtn" type="primary" disabled={!this.state.words} onClick={this.previewContent}>预览</Button>
                     </div>
                     <div ref="editorElem" className="editorCont" style={{textAlign: 'left', zIndex: 1}}></div>
                     <p className="words">{this.state.words}/{this.state.maxWords}</p>

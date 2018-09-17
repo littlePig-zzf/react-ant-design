@@ -17,27 +17,28 @@ class Login extends Component {
     e.preventDefault();
     this.setState({loading: true})
     this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-        global.$http(global.$api.common.index, values, (res)=>{
-					this.setState({loading: false})
-
-					this.props.dispatch(setToken(res.token));
-					this.props.dispatch(setUserName(res.data.userName));
-					console.log(res)
-        	if (res.code !== 200) {
-						message.error(res.data)
-        	} else {
-						this.props.history.push("/home");
-        	}
-        }, (error)=>{
-        	console.log(error)
-        })
-      } else {
+			if (err) {
 				this.setState({
 					loading: false
 				})
+				return 
 			}
+      
+			console.log('Received values of form: ', values);
+			global.$http(global.$api.common.index, values, (res)=>{
+				this.setState({loading: false})
+
+				this.props.dispatch(setToken(res.token));
+				this.props.dispatch(setUserName(res.data.userName));
+				console.log(res)
+				if (res.code !== 200) {
+					message.error(res.data.msg)
+					return
+				}
+				this.props.history.push("/home");
+			}, (error)=>{
+				console.log(error)
+			})
     });
 	}
 	
