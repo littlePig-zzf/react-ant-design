@@ -23,7 +23,7 @@ import Canvas from './view/canvas/index'
 import Animation from './view/animation/index'
 import Agenda from './view/agenda/index'
 
-import errorPage from './view/errorPage/index'; //找不到路由
+import ErrorPage from './view/errorPage/index'; //找不到路由
 
 import Account from './view/manage/account'
 import Permit from './view/manage/permit'
@@ -65,7 +65,7 @@ const routes =
 					}}/>
 				</Switch>
 			</Home>
- 			<Route path="*" component={errorPage}/>
+ 			<Route path="*" component={ErrorPage}/>
 		</Switch>
 	</App>
 

@@ -4,7 +4,7 @@ import { message } from 'antd';
 Mock.setup({timeout: '1200-2600'})
 
 Mock.mock('/api/login', (option) => {
-	let param = JSON.parse(option.body);
+	let param = JSON.parse(option.body).params;
 	let res = {
         code: 200,
         token: '15454852124854',

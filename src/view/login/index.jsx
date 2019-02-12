@@ -16,29 +16,29 @@ class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({loading: true})
-    this.props.form.validateFields((err, values) => {
-			if (err) {
-				this.setState({
-					loading: false
-				})
-				return 
-			}
-      
-			console.log('Received values of form: ', values);
-			global.$http(global.$api.common.index, values, (res)=>{
-				this.setState({loading: false})
+    this.props.form.validateFields(async (err, values) => {
+      if (err) {
+        this.setState({
+          loading: false
+        });
+        return;
+      }
 
-				this.props.dispatch(setToken(res.token));
-				this.props.dispatch(setUserName(res.data.userName));
-				console.log(res)
-				if (res.code !== 200) {
-					message.error(res.data.msg)
-					return
-				}
-				this.props.history.push("/home");
-			}, (error)=>{
-				console.log(error)
-			})
+      try {
+				const res = await global.$api.login(values);
+				console.log(res, "res");
+        this.setState({ loading: false });
+
+        this.props.dispatch(setToken(res.token));
+        this.props.dispatch(setUserName(res.data.userName));
+        if (res.code !== 200) {
+          message.error(res.data.msg);
+          return;
+        }
+        this.props.history.push("/home");
+      } catch (error) {
+        console.error(error);
+      }
     });
 	}
 	

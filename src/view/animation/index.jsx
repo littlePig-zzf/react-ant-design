@@ -16,12 +16,12 @@ class SvgFrame extends Component {
     circle.style.transition = "stroke-dashoffset .3s ease-in-out";
   }
   changeValue(value) {
-      this.setState({
-        percent: value
-      })
-      const range_value = this.state.percent
-      const val = len - (range_value / 100) * len;
-      circle.style.strokeDashoffset = value === 100 ? 0 : val; //取消自带的strokeDashoffset
+    this.setState({
+      percent: value
+    })
+    const range_value = this.state.percent
+    const val = len - (range_value / 100) * len;
+    circle.style.strokeDashoffset = value === 100 ? 0 : val; //取消自带的strokeDashoffset
   }
   render() {
     return <div className="container">

@@ -16,21 +16,22 @@ class Company extends Component {
 	    });
 	};
 	delFun = (key) => {
-		const { Data } = this.state
-		delete Data[key]
+		const { data } = this.state;
+		delete data[key];
 		this.setState({
-			data: Data
+			data: data
 		})
 	};
-	getData = () => {
+	getData = async () => {
 		this.setState({loading: true});
-		global.$http(global.$api.common.company, (res)=>{
+		try {
+			const res = await global.$api.company()
 			this.setState(
 				{data: res.data, loading: false}
 			)
-		}, (error)=>{
-
-		})
+		} catch (error) {
+			console.error(error);
+		}
 	};
 	
 	componentWillMount() {
