@@ -4,16 +4,16 @@
   padding: 20px;
   background: #fff;
   border-radius: 5px;
-  overflow-y: scroll;
+  // overflow-y: scroll;
 }
 
 .MainBox {
   width: 100%;
-  .ant-layout-sider {
-  	height: 100vh;
-  }
+  // .ant-layout-sider {
+  // 	height: 100vh;
+  // }
   .rightCont {
-    overflow-x: auto !important;
+    // overflow-x: auto !important;
     min-width: 1200px;
   }
   .trigger {
