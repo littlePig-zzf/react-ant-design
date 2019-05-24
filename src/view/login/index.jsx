@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { setToken, setUserName } from "../../actions";
-import './index.css';
+import './index.scss';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 const FormItem = Form.Item;
 
@@ -68,11 +68,11 @@ class Login extends Component {
 		          })(
 		            <Checkbox>Remember me</Checkbox>
 		          )}
-		          <a className="login-form-forgot" href="">Forgot password</a>
+		          <span className="login-form-forgot" href="">Forgot password</span>
 		          <Button type="primary" loading={this.state.loading} htmlType="submit" className="login-form-button">
 		            Log in
 		          </Button>
-		          Or <a href="">register now!</a>
+		          Or <span>register now!</span>
 		        </FormItem>
 		      </Form>
 	      </div>

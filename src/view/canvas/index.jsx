@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Slider } from "antd";
 import "rc-color-picker/assets/index.css";
 import ColorPicker from "rc-color-picker";
-import "./index.css"
+import "./index.scss"
 import draw from "./canvas.js"
 const ButtonGroup = Button.Group;
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './index.css'
+import './index.scss'
 import wangeditor from 'wangeditor'
 import { Modal, Button, message } from 'antd';
 import xss from 'xss'  //防止xss攻击

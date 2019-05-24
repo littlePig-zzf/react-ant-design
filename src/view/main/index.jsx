@@ -6,7 +6,7 @@ import { getNavData } from '../../common/nav';
 
 import MainCont from './mainCont';
 import BreadItem from '../../components/BreadItem'
-import './index.css';
+import './index.scss';
 
 const { Header, Content, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -126,9 +126,9 @@ class MainIndex extends Component {
             <Header style={{ background: "#fff", padding: 0 }}>
               <Icon className="trigger" type={this.state.collapsed ? "menu-unfold" : "menu-fold"} onClick={this.toggle} />
               <Dropdown overlay={menu}>
-                <a className="ant-dropdown-link exitBtn">
+                <span className="ant-dropdown-link exitBtn">
                   {this.props.userName} <Icon type="down" />
-                </a>
+                </span>
               </Dropdown>
             </Header>
             <Content style={{ margin: "24px", background: "#f0f2f5", minHeight: 280 }}>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Slider } from "antd";
-import './index.css'
+import './index.scss'
 
 let circle = ''
 let len = 0

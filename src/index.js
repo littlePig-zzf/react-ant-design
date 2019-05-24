@@ -1,15 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import rootReducer from './reducers'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import rootReducer from './reducers'
+import './index.css';
+import * as serviceWorker from './serviceWorker';
 
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
-import 'antd/dist/antd.css'
-
-import App from './App'
+import App from './App';
 import Login from './view/login'
-import registerServiceWorker from './registerServiceWorker'
 
 // 路由配置
 import Home from './view/main/index'
@@ -50,35 +49,38 @@ const routes =
         <Route path={home + 'animation'} component={Animation} />
         <Route path={home + 'agenda'} component={Agenda} />
         <Route path={home + 'manageIndex'} render={(route) => { // 使用render来实现嵌套路由的写法
-			return (
-				<Switch>
-					<Redirect from={route.match.url} to={`${route.match.url}/account`} exact/>
-					<Route path={`${route.match.url}/account`} component={Account} />
-					<Route path={`${route.match.url}/Permit`} component={Permit} />
-				</Switch>
-			)
-		}} />
+          return (
+            <Switch>
+              <Redirect from={route.match.url} to={`${route.match.url}/account`} exact/>
+              <Route path={`${route.match.url}/account`} component={Account} />
+              <Route path={`${route.match.url}/Permit`} component={Permit} />
+            </Switch>
+          )
+        }} />
         <Route path={home + 'formIndex'} render={(route) => {
-			return (
-				<Switch>
-					<Redirect from={route.match.url} to={`${route.match.url}/form`} exact/>
-					<Route path={`${route.match.url}/form`} component={Form} />
-					<Route path={`${route.match.url}/rowForm`} component={RowForm} />
-				</Switch>
-			)
-		}} />
+          return (
+            <Switch>
+              <Redirect from={route.match.url} to={`${route.match.url}/form`} exact/>
+              <Route path={`${route.match.url}/form`} component={Form} />
+              <Route path={`${route.match.url}/rowForm`} component={RowForm} />
+            </Switch>
+          )
+        }} />
       </Switch>
     </Home>
     <Route path='*' component={ErrorPage} />
   </Switch>
 </App>
 
-ReactDOM.render((
+ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       {routes}
     </BrowserRouter>
   </Provider>
-  ), document.getElementById('root'))
+, document.getElementById('root'));
 
-registerServiceWorker()
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();

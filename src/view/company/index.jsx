@@ -59,7 +59,7 @@ class Company extends Component {
 			render: (text, record) => {
 				return (
 					<Popconfirm title="Are you sure delete this task?" onConfirm={ () => this.delFun(record.key) } okText="Yes" cancelText="No">
-						<a>Delete</a>
+						<span>Delete</span>
 					</Popconfirm>
 				)
 			}

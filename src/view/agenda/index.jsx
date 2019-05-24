@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { findIndex } from 'lodash'
 import { Steps, Button, DatePicker, Modal, Input, Icon } from "antd";
-import "./index.css";
+import "./index.scss";
 
 const Step = Steps.Step;
 const { RangePicker } = DatePicker;
