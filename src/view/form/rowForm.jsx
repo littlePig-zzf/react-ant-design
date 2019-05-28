@@ -10,21 +10,21 @@ class RegistrationForm extends Component {
     };
   }
 
-  handleChange = ({target: {value}}) => {
+  handleChange = ({ target: { value } }) => {
     this.setState({
       username: value
-    })
-  }
+    });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
-    if(this.state.username === '') {
-      message.error('请填写下面输入框')
+    if (this.state.username === '') {
+      message.error('请填写下面输入框');
       ReactDOM.findDOMNode(this.refs.user).focus();
-      return
+      return;
     }
     message.success('账户名为： ' + this.state.username);
-  }
+  };
 
   render() {
     let InputWidth = {
@@ -34,16 +34,28 @@ class RegistrationForm extends Component {
     };
     return (
       <div className="formBox container">
-      	<form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <label>
             name:
-            <Input ref="user" style={InputWidth} placeholder="Basic usage" onKeyUp={ this.handleChange }/>
+            <Input
+              ref="user"
+              style={InputWidth}
+              placeholder="Basic usage"
+              onKeyUp={this.handleChange}
+            />
           </label>
           <label>
             job:
-            <Input ref = "job" style = {InputWidth} placeholder = "请填写你从事的职业" onKeyUp = { this.handleChange }/>
+            <Input
+              ref="job"
+              style={InputWidth}
+              placeholder="请填写你从事的职业"
+              onKeyUp={this.handleChange}
+            />
           </label>
-          <Button type="primary" htmlType="submit">提交</Button>
+          <Button type="primary" htmlType="submit">
+            提交
+          </Button>
         </form>
       </div>
     );

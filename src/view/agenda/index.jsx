@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { findIndex } from 'lodash'
-import { Steps, Button, DatePicker, Modal, Input, Icon } from "antd";
-import "./index.scss";
+import React, { Component } from 'react';
+import { findIndex } from 'lodash';
+import { Steps, Button, DatePicker, Modal, Input, Icon } from 'antd';
+import './index.scss';
 
 const Step = Steps.Step;
 const { RangePicker } = DatePicker;
@@ -12,8 +12,8 @@ class agenda extends Component {
     schedule: [],
     filterSchedule: [],
     showModal: false,
-    newDate: "",
-    newDes: ""
+    newDate: '',
+    newDes: ''
   };
 
   showModal = () => {
@@ -60,8 +60,8 @@ class agenda extends Component {
     const year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
-    month = month < 10 ? "0" + month : month;
-    day = day < 10 ? "0" + day : day;
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
     const today = `${year}-${month}-${day}`;
     return { year: String(year), today: today };
   }
@@ -100,8 +100,8 @@ class agenda extends Component {
   handleCancel = e => {
     this.setState({
       showModal: false,
-      newDate: "",
-      newDes: ""
+      newDate: '',
+      newDes: ''
     });
   };
 
@@ -128,11 +128,11 @@ class agenda extends Component {
   };
 
   delAgenda = (index, cIndex) => {
-    this.state.schedule[index].children.splice(cIndex, 1)
+    this.state.schedule[index].children.splice(cIndex, 1);
     this.setState({
       schedule: this.state.schedule
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -140,23 +140,23 @@ class agenda extends Component {
         <h3>记录日程</h3>
         <label>时间筛选：</label>
         <RangePicker
-          placeholder={["开始日期", "结束日期"]}
+          placeholder={['开始日期', '结束日期']}
           format="YYYY-MM-DD"
           onChange={this.handlePanelChange}
         />
         <div className="progressCont">
           {this.state.schedule.length === 0 ? (
-            <p style={{ color: "#999" }}>赶紧修饰你的日程表吧！yeah！</p>
+            <p style={{ color: '#999' }}>赶紧修饰你的日程表吧！yeah！</p>
           ) : (
             this.state.schedule.map((item, index) => {
               return (
                 <div
-                  key={index + "s"}
-                  style={{ display: "inline-block", verticalAlign: "top" }}
+                  key={index + 's'}
+                  style={{ display: 'inline-block', verticalAlign: 'top' }}
                 >
                   <h4>{item.year}</h4>
                   {this.state.schedule[index].children.length ? (
-                    ""
+                    ''
                   ) : (
                     <p style={{ marginRight: 20 }}>暂无数据~</p>
                   )}
@@ -170,7 +170,25 @@ class agenda extends Component {
                         return (
                           <Step
                             title={cItem.date}
-                            description={<div>{cItem.des} &nbsp; <Icon type="close" theme="outlined" onClick={this.delAgenda.bind(this, index, cIndex)} style={{verticalAlign: 'middle', cursor: 'pointer', color: '#f00'}} /></div>}
+                            description={
+                              <div>
+                                {cItem.des} &nbsp;{' '}
+                                <Icon
+                                  type="close"
+                                  theme="outlined"
+                                  onClick={this.delAgenda.bind(
+                                    this,
+                                    index,
+                                    cIndex
+                                  )}
+                                  style={{
+                                    verticalAlign: 'middle',
+                                    cursor: 'pointer',
+                                    color: '#f00'
+                                  }}
+                                />
+                              </div>
+                            }
                             key={cIndex}
                           />
                         );
@@ -214,8 +232,8 @@ class agenda extends Component {
             <TextArea
               ref="textarea"
               rows={4}
-              style={{ width: "80%", verticalAlign: "top" }}
-              onChange={({target: {value}}) => {
+              style={{ width: '80%', verticalAlign: 'top' }}
+              onChange={({ target: { value } }) => {
                 this.setState({ newDes: value });
               }}
             />

@@ -1,5 +1,5 @@
 // 对应的侧边栏
-const main = '/main/'
+const main = '/main/';
 export const getNavData = [
   {
     name: '首页',
@@ -66,4 +66,4 @@ export const getNavData = [
     path: `${main}agenda`,
     icon: 'calendar'
   }
-]
+];

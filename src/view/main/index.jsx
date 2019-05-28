@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon, Dropdown } from 'antd';
 import { getNavData } from '../../common/nav';
 
 import MainCont from './mainCont';
-import BreadItem from '../../components/BreadItem'
+import BreadItem from '../../components/BreadItem';
 import './index.scss';
 
 const { Header, Content, Sider } = Layout;
@@ -28,26 +28,29 @@ class MainIndex extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    if (this.props.location !== nextProps.location) { // 监听路由变化
+    if (this.props.location !== nextProps.location) {
+      // 监听路由变化
       this.getCurIndex(nextProps.location);
     }
   }
-  
+
   navOpenChange(openKeys) {
     this.setState({
       curOpenNav: openKeys
-    })
+    });
   }
 
   getCurIndex(nextRouter) {
-    const path = nextRouter ? nextRouter.pathname : this.props.location.pathname;
+    const path = nextRouter
+      ? nextRouter.pathname
+      : this.props.location.pathname;
     getNavData.forEach((item, index) => {
       if (item.children) {
         item.children.forEach((cItem, cIndex) => {
           if (Object.is(cItem.path, path)) {
             this.setState({
               //使用setState修改state数据之后，并不能在这里直接打印最新的state的值，因为修改了之后还会执行一遍willUpdate
-              curSelectKey: [index + "-" + cIndex],
+              curSelectKey: [index + '-' + cIndex],
               curOpenNav: [index.toString()]
             });
           }
@@ -97,7 +100,7 @@ class MainIndex extends Component {
     let menu = [];
     children.forEach((cItem, cIndex) => {
       menu.push(
-        <Menu.Item key={index + "-" + cIndex}>
+        <Menu.Item key={index + '-' + cIndex}>
           <Link to={cItem.path}>{cItem.name}</Link>
         </Menu.Item>
       );
@@ -114,35 +117,51 @@ class MainIndex extends Component {
         </Menu.Item>
       </Menu>
     );
-    return <div className="MainBox">
+    return (
+      <div className="MainBox">
         <Layout>
           <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
             <div className="logo" />
-            <Menu theme="dark" mode="inline" selectedKeys={this.state.curSelectKey} openKeys={this.state.curOpenNav} defaultSelectedKeys={this.state.curSelectKey} defaultOpenKeys={this.state.curOpenNav} onOpenChange={this.navOpenChange.bind(this)}>
+            <Menu
+              theme="dark"
+              mode="inline"
+              selectedKeys={this.state.curSelectKey}
+              openKeys={this.state.curOpenNav}
+              defaultSelectedKeys={this.state.curSelectKey}
+              defaultOpenKeys={this.state.curOpenNav}
+              onOpenChange={this.navOpenChange.bind(this)}
+            >
               {this.getMenu()}
             </Menu>
           </Sider>
           <Layout className="rightCont">
-            <Header style={{ background: "#fff", padding: 0 }}>
-              <Icon className="trigger" type={this.state.collapsed ? "menu-unfold" : "menu-fold"} onClick={this.toggle} />
+            <Header style={{ background: '#fff', padding: 0 }}>
+              <Icon
+                className="trigger"
+                type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                onClick={this.toggle}
+              />
               <Dropdown overlay={menu}>
                 <span className="ant-dropdown-link exitBtn">
                   {this.props.userName} <Icon type="down" />
                 </span>
               </Dropdown>
             </Header>
-            <Content style={{ margin: "24px", background: "#f0f2f5", minHeight: 280 }}>
+            <Content
+              style={{ margin: '24px', background: '#f0f2f5', minHeight: 280 }}
+            >
               <BreadItem />
               {this.props.children || <MainCont />}
             </Content>
           </Layout>
         </Layout>
-      </div>;
+      </div>
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  userName: state.UserName || localStorage.getItem("userName")
+  userName: state.UserName || localStorage.getItem('userName')
 });
 
 export default connect(mapStateToProps)(MainIndex);

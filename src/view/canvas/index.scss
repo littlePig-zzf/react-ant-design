@@ -1,24 +1,24 @@
 .canvas-box {
-    .paint-tool {
-        margin: 20px 0;
-        .stroke-width {
-            margin-left: 20px;
-        }
-        .rc-color-picker-wrap {
-            vertical-align: middle;
-        }
+  .paint-tool {
+    margin: 20px 0;
+    .stroke-width {
+      margin-left: 20px;
     }
-    .canvas-con {
-        .canvas {
-            width: 100%;
-            height: 500px;
-            margin: 0 auto;
-            border: 1px solid #eeeeee;
-        }
+    .rc-color-picker-wrap {
+      vertical-align: middle;
     }
-    .ant-btn.active {
-        color: #40a9ff;
-        background-color: #fff;
-        border-color: #40a9ff;
+  }
+  .canvas-con {
+    .canvas {
+      width: 100%;
+      height: 500px;
+      margin: 0 auto;
+      border: 1px solid #eeeeee;
     }
+  }
+  .ant-btn.active {
+    color: #40a9ff;
+    background-color: #fff;
+    border-color: #40a9ff;
+  }
 }

@@ -9,46 +9,53 @@ import 'echarts/lib/component/tooltip';
 import 'echarts/lib/component/title';
 
 export default class BarEchart extends Component {
-    componentDidMount() {
-        this.initEchart()
-    }
-    initEchart() {
-        // 基于准备好的dom，初始化echarts实例
-        let myChart = echarts.init(this.refs.echart);
-        // 绘制图表
-        myChart.setOption({
-            tooltip: {},
-            xAxis: {
-                data: this.props.xAxisData
-            },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                itemStyle: {
-                    normal: {
-                        color: this.props.echartBg
-                    }
-                },
-                barGap: '-100%',
-                barCategoryGap: '40%',
-                data: this.props.yAxisData
-            }]
-        });
-        setTimeout(()=>{
-            myChart.resize()
-        },20)
-    }
-    render() {
-        return (
-            <div ref = "echart" style = {{width: '100%', height: 400, background: '#fff'}}> </div>
-        )
-    }
+  componentDidMount() {
+    this.initEchart();
+  }
+  initEchart() {
+    // 基于准备好的dom，初始化echarts实例
+    let myChart = echarts.init(this.refs.echart);
+    // 绘制图表
+    myChart.setOption({
+      tooltip: {},
+      xAxis: {
+        data: this.props.xAxisData
+      },
+      yAxis: {},
+      series: [
+        {
+          name: '销量',
+          type: 'bar',
+          itemStyle: {
+            normal: {
+              color: this.props.echartBg
+            }
+          },
+          barGap: '-100%',
+          barCategoryGap: '40%',
+          data: this.props.yAxisData
+        }
+      ]
+    });
+    setTimeout(() => {
+      myChart.resize();
+    }, 20);
+  }
+  render() {
+    return (
+      <div
+        ref="echart"
+        style={{ width: '100%', height: 400, background: '#fff' }}
+      >
+        {' '}
+      </div>
+    );
+  }
 }
 
 BarEchart.defaultProps = {
-    echartWidth: '100%',
-    xAxisData: ['小黄', '小红', '小狗', '小花', '小猪', '小明'],
-    yAxisData: [5, 20, 36, 10, 10, 20],
-    echartBg: '#83bff6',
+  echartWidth: '100%',
+  xAxisData: ['小黄', '小红', '小狗', '小花', '小猪', '小明'],
+  yAxisData: [5, 20, 36, 10, 10, 20],
+  echartBg: '#83bff6'
 };
