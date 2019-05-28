@@ -10,11 +10,17 @@
 .MainBox {
   width: 100%;
   .ant-layout-sider {
-  	min-height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    min-height: 100vh;
+    z-index: 9999;
   }
   .rightCont {
     // overflow-x: auto !important;
     min-width: 1200px;
+    margin-left: 200px;
   }
   .trigger {
     font-size: 18px;

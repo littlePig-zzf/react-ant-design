@@ -20,8 +20,6 @@ import ErrorPage from './view/errorPage/index'; // 找不到路由
 import Account from './view/manage/account'
 import Permit from './view/manage/permit'
 
-const home = '/home/'
-
 export const routes =
 <App>
   <Switch>
@@ -32,28 +30,36 @@ export const routes =
       component={Login} />
     <Home>
       <Switch>
-        <Route path='/home' exact component={MainIndex} />
-        <Route path={home + 'companyIndex'} component={CompanyIndex} />
-        <Route path={home + 'editorIndex'} component={EditorIndex} />
-        <Route path={home + 'themeColor'} component={ThemeColor} />
-        <Route path={home + 'canvas'} component={Canvas} />
-        <Route path={home + 'animation'} component={Animation} />
-        <Route path={home + 'agenda'} component={Agenda} />
-        <Route path={home + 'manageIndex'} render={(route) => { // 使用render来实现嵌套路由的写法
+        <Route path='/main'render={(route) => {
+          console.log(route, 'router');
           return (
             <Switch>
-              <Redirect from={route.match.url} to={`${route.match.url}/account`} exact/>
-              <Route path={`${route.match.url}/account`} component={Account} />
-              <Route path={`${route.match.url}/Permit`} component={Permit} />
-            </Switch>
-          )
-        }} />
-        <Route path={home + 'formIndex'} render={(route) => {
-          return (
-            <Switch>
-              <Redirect from={route.match.url} to={`${route.match.url}/form`} exact/>
-              <Route path={`${route.match.url}/form`} component={Form} />
-              <Route path={`${route.match.url}/rowForm`} component={RowForm} />
+              <Redirect from={route.match.url} to={`${route.match.url}/index`} exact></Redirect>
+              <Route path={`${route.match.url}/index`} component={MainIndex} />
+              <Route path={`${route.match.url}/companyIndex`} component={CompanyIndex} />
+              <Route path={`${route.match.url}/editorIndex`} component={EditorIndex} />
+              <Route path={`${route.match.url}/themeColor`} component={ThemeColor} />
+              <Route path={`${route.match.url}/canvas`} component={Canvas} />
+              <Route path={`${route.match.url}/animation`} component={Animation} />
+              <Route path={`${route.match.url}/agenda`} component={Agenda} />
+              <Route path={`${route.match.url}/manageIndex`} render={(route) => { // 使用render来实现嵌套路由的写法
+                return (
+                  <Switch>
+                    <Redirect from={route.match.url} to={`${route.match.url}/account`} exact/>
+                    <Route path={`${route.match.url}/account`} component={Account} />
+                    <Route path={`${route.match.url}/Permit`} component={Permit} />
+                  </Switch>
+                )
+              }} />
+              <Route path={`${route.match.url}/formIndex`} render={(route) => {
+                return (
+                  <Switch>
+                    <Redirect from={route.match.url} to={`${route.match.url}/form`} exact/>
+                    <Route path={`${route.match.url}/form`} component={Form} />
+                    <Route path={`${route.match.url}/rowForm`} component={RowForm} />
+                  </Switch>
+                )
+              }} />
             </Switch>
           )
         }} />

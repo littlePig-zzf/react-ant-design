@@ -35,7 +35,7 @@ class Login extends Component {
           message.error(res.data.msg);
           return;
         }
-        this.props.history.push("/home");
+        this.props.history.push("/main/index");
       } catch (error) {
         console.error(error);
       }

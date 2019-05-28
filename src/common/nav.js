@@ -1,69 +1,69 @@
 // 对应的侧边栏
-const home = '/home/'
+const main = '/main/'
 export const getNavData = [
   {
     name: '首页',
-    path: '/home',
+    path: `${main}index`,
     icon: 'home'
   },
   {
     name: '公司列表',
-    path: home+'companyIndex',
+    path: `${main}companyIndex`,
     icon: 'video-camera'
   },
   {
     name: '表单列表',
-    path: home+'formIndex',
+    path: `${main}formIndex`,
     icon: 'file-text',
     children: [
       {
         name: '使用ant组件',
-        path: home+'formIndex/form'
+        path: `${main}formIndex/form`
       },
       {
         name: '不使用组件',
-        path: home+'formIndex/rowForm'
+        path: `${main}formIndex/rowForm`
       }
     ]
   },
   {
     name: '管理列表',
-    path: home + 'manageIndex',
+    path: `${main}manageIndex`,
     icon: 'file-text',
     children: [
       {
         name: '账户列表',
-        path: home + 'manageIndex/account'
+        path: `${main}manageIndex/account`
       },
       {
         name: '权限列表',
-        path: home + 'manageIndex/permit'
+        path: `${main}manageIndex/permit`
       }
     ]
   },
   {
     name: 'html编辑器',
-    path: home+'editorIndex',
+    path: `${main}editorIndex`,
     icon: 'edit'
   },
   {
     name: '自定义主题色',
-    path: home+'themeColor',
+    path: `${main}themeColor`,
     icon: 'appstore-o'
   },
   {
     name: '画板',
-    path: home+'canvas',
+    path: `${main}canvas`,
     icon: 'ant-design'
   },
   {
     name: '动画',
-    path: home+'animation',
+    path: `${main}animation`,
     icon: 'share-alt'
   },
   {
     name: '日程表',
-    path: home + 'agenda',
+    path: `${main}agenda`,
     icon: 'calendar'
   }
 ]
