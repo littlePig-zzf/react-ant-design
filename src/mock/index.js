@@ -12,15 +12,15 @@ Mock.mock('/api/login', option => {
       userName: param.userName
     }
   };
-  // if(param.userName !== 'zzf') {
-  // 	res.code = 502
-  // 	res.data.msg = '用户名错误！'
-  // }else if(param.password !== '123456') {
-  // 	res.code = 502
-  // 	res.data.msg = '密码错误！'
-  // }else {
-  // 	res.data.userName = 'zzf'
-  // }
+  if (param.userName !== 'zzf') {
+    res.code = 502;
+    res.data.msg = '用户名错误！';
+  } else if (param.password !== '123456') {
+    res.code = 502;
+    res.data.msg = '密码错误！';
+  } else {
+    res.data.userName = 'zzf';
+  }
   return res;
 });
 

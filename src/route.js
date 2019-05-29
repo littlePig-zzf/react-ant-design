@@ -6,7 +6,7 @@ import Login from './view/login';
 // 路由配置
 import Home from './view/main/index';
 import MainIndex from './view/main/mainCont';
-import CompanyIndex from './view/company/index';
+import Table from './view/table/index';
 import Form from './view/form/form';
 import RowForm from './view/form/rowForm';
 import EditorIndex from './view/editor/index';
@@ -41,10 +41,7 @@ export const routes = (
                     path={`${route.match.url}/index`}
                     component={MainIndex}
                   />
-                  <Route
-                    path={`${route.match.url}/companyIndex`}
-                    component={CompanyIndex}
-                  />
+                  <Route path={`${route.match.url}/table`} component={Table} />
                   <Route
                     path={`${route.match.url}/editorIndex`}
                     component={EditorIndex}

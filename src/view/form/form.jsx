@@ -11,6 +11,10 @@ const brands = [
   ['-1', '-2', '-3', '-4']
 ];
 
+const tags = ['A', 'B', 'C', 'D', 'E'];
+
+const radios = ['出售中', '已下架', '仓库中'];
+
 class RegistrationForm extends Component {
   state = {
     currentBrand: []
@@ -143,21 +147,13 @@ class RegistrationForm extends Component {
             })(
               <Checkbox.Group style={{ width: '100%', paddingTop: 9 }}>
                 <Row>
-                  <Col span={3}>
-                    <Checkbox value="A">标签A</Checkbox>
-                  </Col>
-                  <Col span={3}>
-                    <Checkbox value="B">标签B</Checkbox>
-                  </Col>
-                  <Col span={3}>
-                    <Checkbox value="C">标签C</Checkbox>
-                  </Col>
-                  <Col span={3}>
-                    <Checkbox value="D">标签D</Checkbox>
-                  </Col>
-                  <Col span={3}>
-                    <Checkbox value="E">标签E</Checkbox>
-                  </Col>
+                  {tags.map((item, index) => {
+                    return (
+                      <Col span={4}>
+                        <Checkbox value={item}>标签{item}</Checkbox>
+                      </Col>
+                    );
+                  })}
                 </Row>
               </Checkbox.Group>
             )}
@@ -188,9 +184,9 @@ class RegistrationForm extends Component {
               initialValue: 1
             })(
               <RadioGroup>
-                <Radio value={1}>出售中</Radio>
-                <Radio value={2}>已下架</Radio>
-                <Radio value={3}>仓库中</Radio>
+                {radios.map((item, index) => {
+                  return <Radio value={index + 1}>{item}</Radio>;
+                })}
               </RadioGroup>
             )}
           </FormItem>

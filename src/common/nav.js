@@ -7,8 +7,8 @@ export const getNavData = [
     icon: 'home'
   },
   {
-    name: '公司列表',
-    path: `${main}companyIndex`,
+    name: '表格',
+    path: `${main}table`,
     icon: 'video-camera'
   },
   {
