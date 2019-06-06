@@ -1,0 +1,41 @@
+$primary-color: #99cccc;
+.transform {
+  display: flex;
+  flex-direction: column;
+  button {
+    margin-bottom: 10px;
+  }
+  &-cont {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    .sort-cont {
+      margin-right: 20px;
+      border: 1px solid $primary-color;
+      .title {
+        background-color: $primary-color;
+        border-bottom: 1px solid $primary-color;
+        font-size: 16px;
+        line-height: 36px;
+        text-align: center;
+        color: #fff;
+      }
+      ul {
+        width: 200px;
+        height: 100%;
+        padding: 0;
+        margin: 10px;
+        list-style-type: none;
+        li {
+          width: 100%;
+          height: 40px;
+          margin-bottom: 10px;
+          padding: 0 10px;
+          box-sizing: border-box;
+          border: 1px solid $primary-color;
+          line-height: 40px;
+        }
+      }
+    }
+  }
+}

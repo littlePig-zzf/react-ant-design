@@ -14,6 +14,7 @@ import ThemeColor from './view/themeColor/index';
 import Canvas from './view/canvas/index';
 import Animation from './view/animation/index';
 import Agenda from './view/agenda/index';
+import Transform from './view/transform/index';
 
 import ErrorPage from './view/errorPage/index'; // 找不到路由
 
@@ -106,6 +107,10 @@ export const routes = (
                         </Switch>
                       );
                     }}
+                  />
+                  <Route
+                    path={`${route.match.url}/transform`}
+                    component={Transform}
                   />
                 </Switch>
               );

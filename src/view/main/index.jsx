@@ -137,12 +137,13 @@ class MainIndex extends Component {
           <Layout className="rightCont">
             <Header style={{ background: '#fff', padding: 0 }}>
               <Icon
+                id="trigger"
                 className="trigger"
                 type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                 onClick={this.toggle}
               />
               <Dropdown overlay={menu}>
-                <span className="ant-dropdown-link exitBtn">
+                <span className="ant-dropdown-link exitBtn" id="dropdown">
                   {this.props.userName} <Icon type="down" />
                 </span>
               </Dropdown>

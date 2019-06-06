@@ -65,5 +65,10 @@ export const getNavData = [
     name: '日程表',
     path: `${main}agenda`,
     icon: 'calendar'
+  },
+  {
+    name: '任务表',
+    path: `${main}transform`,
+    icon: 'calendar'
   }
 ];
