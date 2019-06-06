@@ -5,14 +5,17 @@ import SharedGroup from './sortableList.jsx';
 import './index.scss';
 
 class transform extends Component {
-  state = {
-    showModal: false,
-    dataResource: [
-      { title: '需求', data: [] },
-      { title: '处理中', data: [] },
-      { title: '已完成', data: [] }
-    ]
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      showModal: false,
+      dataResource: [
+        { title: '需求', data: [] },
+        { title: '处理中', data: [] },
+        { title: '已完成', data: [] }
+      ]
+    };
+  }
   addDemand() {
     const { showModal } = this.state;
     this.setState({ showModal: !showModal });
@@ -32,6 +35,13 @@ class transform extends Component {
       }
     });
   };
+  delete(fatherIndex, index) {
+    const { dataResource } = this.state;
+    dataResource[fatherIndex].data.splice(index, 1);
+    this.setState({
+      dataResource
+    });
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     const modalProp = {
@@ -54,6 +64,7 @@ class transform extends Component {
                 index={index}
                 title={item.title}
                 items={item.data}
+                delete={this.delete.bind(this)}
               />
             );
           })}

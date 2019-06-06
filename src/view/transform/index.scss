@@ -34,6 +34,10 @@ $primary-color: #99cccc;
           box-sizing: border-box;
           border: 1px solid $primary-color;
           line-height: 40px;
+          .del {
+            float: right;
+            color: rgb(252, 98, 98);
+          }
         }
       }
     }
