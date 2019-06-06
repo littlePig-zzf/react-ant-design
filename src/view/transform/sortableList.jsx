@@ -29,6 +29,9 @@ class SharedGroup extends Component {
             group: 'shared'
           }}
           tag="ul"
+          onChange={(order, sort, evt) => {
+            this.props.change({ order, sort, evt }, this.props.index);
+          }}
         >
           {items}
         </Sortable>

@@ -13,7 +13,8 @@ class transform extends Component {
         { title: '需求', data: [] },
         { title: '处理中', data: [] },
         { title: '已完成', data: [] }
-      ]
+      ],
+      index: 0
     };
   }
   addDemand() {
@@ -42,6 +43,23 @@ class transform extends Component {
       dataResource
     });
   }
+  change({ order, sort, evt }, index) {
+    const { dataResource } = this.state;
+    this.setState({
+      index: this.state.index + 1
+    });
+    if (this.state.index === 1) {
+      dataResource[index].data.splice(evt.oldIndex, 1);
+    } else {
+      dataResource[index].data.push(order);
+      this.setState({
+        index: 0
+      });
+    }
+    this.setState({
+      dataResource
+    });
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     const modalProp = {
@@ -57,17 +75,16 @@ class transform extends Component {
           </Button>
         </p>
         <div className="transform-cont">
-          {this.state.dataResource.map((item, index) => {
-            return (
-              <SharedGroup
-                key={uniqueId()}
-                index={index}
-                title={item.title}
-                items={item.data}
-                delete={this.delete.bind(this)}
-              />
-            );
-          })}
+          {this.state.dataResource.map((item, index) => (
+            <SharedGroup
+              key={uniqueId()}
+              index={index}
+              title={item.title}
+              items={item.data}
+              delete={this.delete.bind(this)}
+              change={this.change.bind(this)}
+            />
+          ))}
         </div>
         <Modal {...modalProp}>
           <Form
