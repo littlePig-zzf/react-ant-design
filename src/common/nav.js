@@ -27,16 +27,16 @@ export const getNavData = [
     ]
   },
   {
-    name: '管理列表',
+    name: '骨架屏',
     path: `${main}manageIndex`,
     icon: 'file-text',
     children: [
       {
-        name: '账户列表',
-        path: `${main}manageIndex/account`
+        name: '展示',
+        path: `${main}manageIndex/skeleton`
       },
       {
-        name: '权限列表',
+        name: '权限',
         path: `${main}manageIndex/permit`
       }
     ]

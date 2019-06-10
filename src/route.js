@@ -18,7 +18,7 @@ import Transform from './view/transform/index';
 
 import ErrorPage from './view/errorPage/index'; // 找不到路由
 
-import Account from './view/manage/account';
+import Skeleton from './view/manage/skeleton';
 import Permit from './view/manage/permit';
 
 export const routes = (
@@ -71,15 +71,15 @@ export const routes = (
                         <Switch>
                           <Redirect
                             from={route.match.url}
-                            to={`${route.match.url}/account`}
+                            to={`${route.match.url}/skeleton`}
                             exact
                           />
                           <Route
-                            path={`${route.match.url}/account`}
-                            component={Account}
+                            path={`${route.match.url}/skeleton`}
+                            component={Skeleton}
                           />
                           <Route
-                            path={`${route.match.url}/Permit`}
+                            path={`${route.match.url}/permit`}
                             component={Permit}
                           />
                         </Switch>

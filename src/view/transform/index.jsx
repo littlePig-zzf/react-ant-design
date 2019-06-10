@@ -60,12 +60,18 @@ class transform extends Component {
       dataResource
     });
   }
+  handleCancel() {
+    this.setState({
+      showModal: false
+    });
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     const modalProp = {
       title: 'Add a demand',
       visible: this.state.showModal,
-      footer: null
+      footer: null,
+      onCancel: this.handleCancel.bind(this)
     };
     return (
       <div className="container transform">
