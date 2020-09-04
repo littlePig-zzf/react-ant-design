@@ -11,7 +11,7 @@
     "lint-staged": "^8.1.7",
     "lodash": "^4.17.11",
     "mockjs": "^1.0.1-beta3",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "prettier": "^1.17.1",
     "rc-color-picker": "^1.2.6",
     "react": "^16.8.6",
