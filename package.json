@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.18.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "echarts": "^4.2.1",
     "husky": "^2.3.0",
     "intro.js": "^2.9.3",
